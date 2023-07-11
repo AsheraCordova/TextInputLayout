@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.ashera.textinputlayout"
+        version="1.0">
+
+  <name>CordovaTextInputLayoutPlugin</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+  
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="CordovaTextInputLayoutPlugin">
+        <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+   	 <!-- start src -->
+     <source-file src="src/com/ashera/textinputlayout/CordovaTextInputLayoutPlugin.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="src/com/ashera/textinputlayout/TextInputEditTextImpl.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="src/com/ashera/textinputlayout/TextInputLayoutImpl.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="src/com/ashera/textinputlayout/TextInputLayoutPlugin.java" target-dir="src/com/ashera/textinputlayout"/>
+     <!-- src end -->
+     <!-- start res -->
+     <source-file src="res/drawable-xxxhdpi/icon_end_clear.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="res/drawable-xxxhdpi/password_eye.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="res/drawable-xxxhdpi/password_eye_off.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="res/layout/design_textinputlayout.xml" target-dir="res/layout"/>
+     <!-- res end -->
+     <!-- start tsc -->
+     <source-file src="tsc/src/android/widget/TextInputEditTextImpl.ts" target-dir="tsc/src/android/widget"/>
+     <source-file src="tsc/src/android/widget/TextInputLayoutImpl.ts" target-dir="tsc/src/android/widget"/>
+     <!-- tsc end -->
+  </platform>
+
+
+</plugin>

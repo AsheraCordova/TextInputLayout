@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.ashera.textinputlayout"
+        version="1.0">
+
+  <name>CordovaTextInputLayoutPlugin</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+  
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="CordovaTextInputLayoutPlugin">
+        <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+   	 <!-- start src -->
+     <source-file src="android/src/com/ashera/textinputlayout/CordovaTextInputLayoutPlugin.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="android/src/com/ashera/textinputlayout/TextInputEditTextImpl.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="android/src/com/ashera/textinputlayout/TextInputLayoutImpl.java" target-dir="src/com/ashera/textinputlayout"/>
+     <source-file src="android/src/com/ashera/textinputlayout/TextInputLayoutPlugin.java" target-dir="src/com/ashera/textinputlayout"/>
+     <!-- src end -->
+     <!-- start res -->
+     <source-file src="android/res/drawable-xxxhdpi/icon_end_clear.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="android/res/drawable-xxxhdpi/password_eye.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="android/res/drawable-xxxhdpi/password_eye_off.png" target-dir="res/drawable-xxxhdpi"/>
+     <source-file src="android/res/layout/design_textinputlayout.xml" target-dir="res/layout"/>
+     <!-- res end -->
+     <!-- start tsc -->
+     <source-file src="android/tsc/src/android/widget/TextInputEditTextImpl.ts" target-dir="tsc/src/android/widget"/>
+     <source-file src="android/tsc/src/android/widget/TextInputLayoutImpl.ts" target-dir="tsc/src/android/widget"/>
+     <!-- tsc end -->
+  </platform>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/widget">
+      <feature name="com.ashera.textinputlayout.ios">
+        	<param name="ios-package" value="CordovaTextInputLayoutPlugin" />
+         	<param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+   	 <!-- start ios -->
+     <header-file src="ios/ios/src/CordovaTextInputLayoutPlugin.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/ios/src/CordovaTextInputLayoutPlugin.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <header-file src="ios/ios/src/TextInputLayoutImpl.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/ios/src/TextInputLayoutImpl.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <header-file src="ios/ios/src/TextInputLayoutPlugin.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/ios/src/TextInputLayoutPlugin.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <!-- ios end -->
+     <!-- start tsc -->
+     <source-file src="ios/tsc/src/ios/widget/TextInputLayoutImpl.ts" target-dir="tsc/src/ios/widget"/>
+     <!-- tsc end -->
+  </platform>
+  <platform name="browser">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CordovaTextInputLayoutPlugin">
+        <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
+        <param name="onload" value="true" />
+      </feature>
+      <framework src="browser/core.gradle" custom="true" type="gradleReference" />
+    </config-file>
+
+   	 <!-- start src -->
+     <!-- src end -->
+     <!-- start res -->
+     <!-- res end -->
+     <!-- start tsc -->
+     <!-- tsc end -->
+  </platform>
+  <platform name="swt">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="CordovaTextInputLayoutPlugin">
+        <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
+        <param name="onload" value="true" />
+      </feature>
+      <framework src="swt/core.gradle" custom="true" type="gradleReference" />
+    </config-file>
+
+   	 <!-- start src -->
+     <!-- src end -->
+     <!-- start res -->
+     <!-- res end -->
+     <!-- start tsc -->
+     <!-- tsc end -->
+  </platform>
+
+
+
+
+
+</plugin>

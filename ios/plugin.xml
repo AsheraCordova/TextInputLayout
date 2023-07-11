@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.ashera.textinputlayout.ios"
+        version="1.0">
+
+  <name>CordovaTextInputLayoutPlugin</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+  
+  <platform name="ios">
+    <config-file target="config.xml" parent="/widget">
+      <feature name="com.ashera.textinputlayout.ios">
+        	<param name="ios-package" value="CordovaTextInputLayoutPlugin" />
+         	<param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+   	 <!-- start ios -->
+     <header-file src="ios/src/CordovaTextInputLayoutPlugin.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/src/CordovaTextInputLayoutPlugin.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <header-file src="ios/src/TextInputLayoutImpl.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/src/TextInputLayoutImpl.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <header-file src="ios/src/TextInputLayoutPlugin.h" target-dir="TextInputLayout/ios/src"/>
+     <source-file src="ios/src/TextInputLayoutPlugin.m" target-dir="TextInputLayout/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <!-- ios end -->
+     <!-- start tsc -->
+     <source-file src="tsc/src/ios/widget/TextInputLayoutImpl.ts" target-dir="tsc/src/ios/widget"/>
+     <!-- tsc end -->
+  </platform>
+
+</plugin>
