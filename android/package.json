@@ -1,5 +1,5 @@
 {
-  "name": "${androidpackagename}",
+  "name": "com.ashera.textinputlayout",
   "version": "1.0.0",
   "description": "TextInputLayout Plugin",
   "author": "Ashera",
