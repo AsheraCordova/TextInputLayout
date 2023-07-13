@@ -60,8 +60,8 @@
         <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
         <param name="onload" value="true" />
       </feature>
-      <framework src="browser/core.gradle" custom="true" type="gradleReference" />
     </config-file>
+    <framework src="browser/core.gradle" custom="true" type="gradleReference" />
 
    	 <!-- start src -->
      <!-- src end -->
@@ -76,9 +76,8 @@
         <param name="android-package" value="com.ashera.textinputlayout.CordovaTextInputLayoutPlugin"/>
         <param name="onload" value="true" />
       </feature>
-      <framework src="swt/core.gradle" custom="true" type="gradleReference" />
     </config-file>
-
+	<framework src="swt/core.gradle" custom="true" type="gradleReference" />
    	 <!-- start src -->
      <!-- src end -->
      <!-- start res -->
