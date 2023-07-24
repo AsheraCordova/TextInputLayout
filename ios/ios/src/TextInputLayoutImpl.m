@@ -475,9 +475,11 @@ J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl_TextInputLayoutExt, templates_, id<Jav
 @interface ASTextInputLayoutImpl_1 : NSObject < ADTextWatcher > {
  @public
   ASTextInputLayoutImpl *this$0_;
+  id<ADTextWatcher> val$oldTextWatcher_;
 }
 
-- (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$;
+- (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$
+                            withADTextWatcher:(id<ADTextWatcher>)capture$0;
 
 - (void)beforeTextChangedWithJavaLangCharSequence:(id<JavaLangCharSequence>)s
                                           withInt:(jint)start
@@ -495,11 +497,11 @@ J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl_TextInputLayoutExt, templates_, id<Jav
 
 J2OBJC_EMPTY_STATIC_INIT(ASTextInputLayoutImpl_1)
 
-__attribute__((unused)) static void ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl_1 *self, ASTextInputLayoutImpl *outer$);
+__attribute__((unused)) static void ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl_1 *self, ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0);
 
-__attribute__((unused)) static ASTextInputLayoutImpl_1 *new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$) NS_RETURNS_RETAINED;
+__attribute__((unused)) static ASTextInputLayoutImpl_1 *new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
+__attribute__((unused)) static ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0);
 
 @interface ASTextInputLayoutImpl_2 : ADDataSetObserver {
  @public
@@ -1326,7 +1328,8 @@ J2OBJC_IGNORE_DESIGNATED_END
   [super initialized];
   if ([((id<JavaUtilList>) nil_chk([((id<ASHasWidgets>) nil_chk(editTextHolder_)) getWidgets])) size] > 0) {
     editText_ = [((id<ASHasWidgets>) nil_chk(editTextHolder_)) getWithInt:0];
-    id<ADTextWatcher> textWatcher = new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(self);
+    id<ADTextWatcher> oldTextWatcher = (id<ADTextWatcher>) cast_check([((id<ASIWidget>) nil_chk(editText_)) getAttributeWithNSString:@"onTextChange" withBoolean:true], ADTextWatcher_class_());
+    id<ADTextWatcher> textWatcher = new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(self, oldTextWatcher);
     [((id<ASIWidget>) nil_chk(editText_)) setAttributeWithNSString:@"onTextChange" withId:textWatcher withBoolean:true];
     ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(self, (NSString *) cast_chk([((id<ASIWidget>) nil_chk(editText_)) getAttributeWithNSString:@"text" withBoolean:true], [NSString class]));
     ASTextInputLayoutImpl_syncBackground(self);
@@ -2885,8 +2888,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 @implementation ASTextInputLayoutImpl_1
 
-- (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$ {
-  ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(self, outer$);
+- (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$
+                            withADTextWatcher:(id<ADTextWatcher>)capture$0 {
+  ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(self, outer$, capture$0);
   return self;
 }
 
@@ -2900,6 +2904,9 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutExt)
                                       withInt:(jint)start
                                       withInt:(jint)before
                                       withInt:(jint)count {
+  if (val$oldTextWatcher_ != nil) {
+    [val$oldTextWatcher_ onTextChangedWithJavaLangCharSequence:s withInt:start withInt:before withInt:count];
+  }
   if (ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(this$0_, s)) {
     [((id<ASIFragment>) nil_chk([this$0_ getFragment])) remeasure];
   }
@@ -2918,32 +2925,34 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutExt)
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   #pragma clang diagnostic ignored "-Wundeclared-selector"
-  methods[0].selector = @selector(initWithASTextInputLayoutImpl:);
+  methods[0].selector = @selector(initWithASTextInputLayoutImpl:withADTextWatcher:);
   methods[1].selector = @selector(beforeTextChangedWithJavaLangCharSequence:withInt:withInt:withInt:);
   methods[2].selector = @selector(onTextChangedWithJavaLangCharSequence:withInt:withInt:withInt:);
   methods[3].selector = @selector(afterTextChangedWithADEditable:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$oldTextWatcher_", "LADTextWatcher;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "beforeTextChanged", "LJavaLangCharSequence;III", "onTextChanged", "afterTextChanged", "LADEditable;", "initialized" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_1 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 4, 1, 0, -1, 6, -1, -1 };
+  static const void *ptrTable[] = { "LASTextInputLayoutImpl;LADTextWatcher;", "beforeTextChanged", "LJavaLangCharSequence;III", "onTextChanged", "afterTextChanged", "LADEditable;", "LASTextInputLayoutImpl;", "initialized" };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_1 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 4, 2, 6, -1, 7, -1, -1 };
   return &_ASTextInputLayoutImpl_1;
 }
 
 @end
 
-void ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl_1 *self, ASTextInputLayoutImpl *outer$) {
+void ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl_1 *self, ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0) {
   self->this$0_ = outer$;
+  self->val$oldTextWatcher_ = capture$0;
   NSObject_init(self);
 }
 
-ASTextInputLayoutImpl_1 *new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$) {
-  J2OBJC_NEW_IMPL(ASTextInputLayoutImpl_1, initWithASTextInputLayoutImpl_, outer$)
+ASTextInputLayoutImpl_1 *new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0) {
+  J2OBJC_NEW_IMPL(ASTextInputLayoutImpl_1, initWithASTextInputLayoutImpl_withADTextWatcher_, outer$, capture$0)
 }
 
-ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$) {
-  J2OBJC_CREATE_IMPL(ASTextInputLayoutImpl_1, initWithASTextInputLayoutImpl_, outer$)
+ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0) {
+  J2OBJC_CREATE_IMPL(ASTextInputLayoutImpl_1, initWithASTextInputLayoutImpl_withADTextWatcher_, outer$, capture$0)
 }
 
 @implementation ASTextInputLayoutImpl_2

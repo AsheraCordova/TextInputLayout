@@ -2080,6 +2080,7 @@ public class TextInputLayoutCommandParamsBuilder extends com.ashera.layout.ViewG
 		super.initialized();
 		if (editTextHolder.getWidgets().size() > 0) {
 			editText = editTextHolder.get(0);
+			r.android.text.TextWatcher oldTextWatcher = (r.android.text.TextWatcher) editText.getAttribute("onTextChange", true);
 			r.android.text.TextWatcher textWatcher = new r.android.text.TextWatcher() {
 				@Override
 				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -2087,6 +2088,9 @@ public class TextInputLayoutCommandParamsBuilder extends com.ashera.layout.ViewG
 
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					if (oldTextWatcher != null) {
+						oldTextWatcher.onTextChanged(s, start, before, count);
+					}
 					if (updateViews(s)) {
 						getFragment().remeasure();
 					}
