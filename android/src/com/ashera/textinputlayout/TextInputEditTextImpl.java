@@ -458,6 +458,31 @@ public class TextInputEditTextImpl extends BaseWidget implements com.ashera.vali
         	super.drawableStateChanged();
         	ViewImpl.drawableStateChanged(TextInputEditTextImpl.this);
         }
+        
+        	public void state0() {
+        		ViewImpl.state(TextInputEditTextImpl.this, 0);
+        	}
+        	public void state1() {
+        		ViewImpl.state(TextInputEditTextImpl.this, 1);
+        	}
+        	public void state2() {
+        		ViewImpl.state(TextInputEditTextImpl.this, 2);
+        	}
+        	public void state3() {
+        		ViewImpl.state(TextInputEditTextImpl.this, 3);
+        	}
+        	public void state4() {
+        		ViewImpl.state(TextInputEditTextImpl.this, 4);
+        	}
+                        
+        public void stateYes() {
+        	ViewImpl.stateYes(TextInputEditTextImpl.this);
+        	
+        }
+        
+        public void stateNo() {
+        	ViewImpl.stateNo(TextInputEditTextImpl.this);
+        }
 	}	@Override
 	public Class getViewClass() {
 		return TextInputEditTextExt.class;
@@ -2110,14 +2135,10 @@ public void afterTextChanged (Editable s){
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 EventCommandFactory.getCommand(commandName).executeCommand(w, obj, s);
 		    }
-		    if (commandType.equals(":")) {
-		    	return;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -2130,7 +2151,7 @@ public void afterTextChanged (Editable s){
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -2152,14 +2173,10 @@ public void beforeTextChanged (CharSequence s,
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 EventCommandFactory.getCommand(commandName).executeCommand(w, obj, s,start,count,after);
 		    }
-		    if (commandType.equals(":")) {
-		    	return;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -2172,7 +2189,7 @@ public void beforeTextChanged (CharSequence s,
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -2194,14 +2211,10 @@ public void onTextChanged (CharSequence s,
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 EventCommandFactory.getCommand(commandName).executeCommand(w, obj, s,start,before,count);
 		    }
-		    if (commandType.equals(":")) {
-		    	return;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -2214,7 +2227,7 @@ public void onTextChanged (CharSequence s,
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -2322,17 +2335,13 @@ public boolean onEditorAction (TextView v,
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 Object commandResult = EventCommandFactory.getCommand(commandName).executeCommand(w, obj, v,actionId,event);
 		    	 if (commandResult != null) {
 		    		 result = (boolean) commandResult;
 		    	 }
 		    }
-		    if (commandType.equals(":")) {
-		    	return result;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -2345,7 +2354,7 @@ public boolean onEditorAction (TextView v,
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -2383,7 +2392,7 @@ public java.util.Map<String, Object> getOnEditorActionEventObj(TextView v,int ac
 	public void setId(String id){
 		if (id != null && !id.equals("")){
 			super.setId(id);
-			textInputEditText.setId(IdGenerator.getId(id));
+			textInputEditText.setId((int) quickConvert(id, "id"));
 		}
 	}
 	

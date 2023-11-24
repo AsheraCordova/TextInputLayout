@@ -430,6 +430,31 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
             ((org.eclipse.swt.widgets.Control)asNativeWidget()).setVisible(View.VISIBLE == visibility);
             
         }
+        
+        	public void state0() {
+        		ViewImpl.state(TextInputLayoutImpl.this, 0);
+        	}
+        	public void state1() {
+        		ViewImpl.state(TextInputLayoutImpl.this, 1);
+        	}
+        	public void state2() {
+        		ViewImpl.state(TextInputLayoutImpl.this, 2);
+        	}
+        	public void state3() {
+        		ViewImpl.state(TextInputLayoutImpl.this, 3);
+        	}
+        	public void state4() {
+        		ViewImpl.state(TextInputLayoutImpl.this, 4);
+        	}
+                        
+        public void stateYes() {
+        	ViewImpl.stateYes(TextInputLayoutImpl.this);
+        	
+        }
+        
+        public void stateNo() {
+        	ViewImpl.stateNo(TextInputLayoutImpl.this);
+        }
 	}
 	@Override
 	public Class getViewClass() {
@@ -1005,14 +1030,10 @@ public void onClick (View v){
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 EventCommandFactory.getCommand(commandName).executeCommand(w, obj, v);
 		    }
-		    if (commandType.equals(":")) {
-		    	return;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -1025,7 +1046,7 @@ public void onClick (View v){
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -1079,17 +1100,13 @@ public boolean onLongClick (View v){
 	    String commandType = (String)obj.get(EventExpressionParser.KEY_COMMAND_TYPE);
 		switch (commandType) {
 		case "+":
-		case ":":
 		    if (EventCommandFactory.hasCommand(commandName)) {
 		    	 Object commandResult = EventCommandFactory.getCommand(commandName).executeCommand(w, obj, v);
 		    	 if (commandResult != null) {
 		    		 result = (boolean) commandResult;
 		    	 }
 		    }
-		    if (commandType.equals(":")) {
-		    	return result;
-		    }
-			
+
 			break;
 		default:
 			break;
@@ -1102,7 +1119,7 @@ public boolean onLongClick (View v){
 		if (w.getModelUiToPojoEventIds() != null) {
 			com.ashera.layout.ViewImpl.refreshUiFromModel(w, w.getModelUiToPojoEventIds(), true);
 		}
-		if (strValue != null && !strValue.isEmpty()) {
+		if (strValue != null && !strValue.isEmpty() && !strValue.trim().startsWith("+")) {
 		    com.ashera.core.IActivity activity = (com.ashera.core.IActivity)w.getFragment().getRootActivity();
 		    activity.sendEventMessage(obj);
 		}
@@ -1138,7 +1155,7 @@ public java.util.Map<String, Object> getOnLongClickEventObj(View v) {
 	public void setId(String id){
 		if (id != null && !id.equals("")){
 			super.setId(id);
-			linearLayout.setId(IdGenerator.getId(id));
+			linearLayout.setId((int) quickConvert(id, "id"));
 		}
 	}
 	
