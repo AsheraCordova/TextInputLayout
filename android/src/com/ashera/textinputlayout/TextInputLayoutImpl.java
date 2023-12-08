@@ -302,6 +302,9 @@ Context context = (Context) fragment.getRootActivity();
 	public class TextInputLayoutExt extends com.google.android.material.textfield.TextInputLayout implements ILifeCycleDecorator, com.ashera.widget.IMaxDimension{
 		private MeasureEvent measureFinished = new MeasureEvent();
 		private OnLayoutEvent onLayoutEvent = new OnLayoutEvent();
+		public IWidget getWidget() {
+			return TextInputLayoutImpl.this;
+		}
 		private int mMaxWidth = -1;
 		private int mMaxHeight = -1;
 		@Override

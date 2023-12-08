@@ -347,6 +347,9 @@ public class TextInputEditTextImpl extends BaseWidget implements com.ashera.vali
 	public class TextInputEditTextExt extends com.google.android.material.textfield.TextInputEditText implements ILifeCycleDecorator{
 		private MeasureEvent measureFinished = new MeasureEvent();
 		private OnLayoutEvent onLayoutEvent = new OnLayoutEvent();
+		public IWidget getWidget() {
+			return TextInputEditTextImpl.this;
+		}
 
 		public TextInputEditTextExt(Context context, android.util.AttributeSet attrs, int defStyleAttr) {
 	        super(context, attrs, defStyleAttr);
