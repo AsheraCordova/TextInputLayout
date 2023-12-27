@@ -309,6 +309,16 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_BoxBackgroundMode)
 - (void)setMyAttributeWithNSString:(NSString *)name
                             withId:(id)value;
 
+- (void)setState0WithId:(id)value;
+
+- (void)setState1WithId:(id)value;
+
+- (void)setState2WithId:(id)value;
+
+- (void)setState3WithId:(id)value;
+
+- (void)setState4WithId:(id)value;
+
 - (void)setVisibilityWithInt:(jint)visibility;
 
 - (void)state0;
@@ -377,6 +387,10 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
                                                                         withId:(id)arg1;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)addModelWithId:(id)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)animatorXmlWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)endAnimator;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)executeWithBoolean:(jboolean)setter;
 
@@ -483,6 +497,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setCustomErrorMessageValuesWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setDuplicateParentStateWithBoolean:(jboolean)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setElevationWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setEnabledWithBoolean:(jboolean)value;
 
@@ -642,6 +658,14 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setModelUiToPojoWithNSString:(NSString *)arg0;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnAnimationCancelWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnAnimationEndWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnAnimationRepeatWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnAnimationStartWithNSString:(NSString *)arg0;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnChildViewAddedWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setOnChildViewRemovedWithNSString:(NSString *)arg0;
@@ -751,6 +775,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setVisibilityWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setZIndexWithInt:(jint)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)startAnimator;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetAddStatesFromChildren;
 
