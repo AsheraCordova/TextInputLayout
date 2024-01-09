@@ -596,6 +596,7 @@ public class TextInputEditTextImpl extends BaseWidget implements com.ashera.vali
         public void stateNo() {
         	ViewImpl.stateNo(TextInputEditTextImpl.this);
         }
+     
 	}	@Override
 	public Class getViewClass() {
 		return TextInputEditTextExt.class;
@@ -2525,7 +2526,6 @@ public java.util.Map<String, Object> getOnEditorActionEventObj(TextView v,int ac
 
     	}
     }
-    
 	
 private TextInputEditTextCommandBuilder builder;
 private TextInputEditTextBean bean;
@@ -4174,7 +4174,7 @@ public void setPaddingVertical(String value) {
 }
 
 
-    
+	
 	//end - body
 
 }

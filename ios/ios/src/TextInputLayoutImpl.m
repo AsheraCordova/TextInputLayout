@@ -28,6 +28,7 @@
 #include "IWidget.h"
 #include "IWidgetLifeCycleListener.h"
 #include "J2ObjC_source.h"
+#include "LayoutTransition.h"
 #include "LinearLayout.h"
 #include "MeasureEvent.h"
 #include "OnLayoutEvent.h"
@@ -45,6 +46,7 @@
 #include "java/lang/CharSequence.h"
 #include "java/lang/Float.h"
 #include "java/lang/Integer.h"
+#include "java/lang/Runnable.h"
 #include "java/lang/StringBuilder.h"
 #include "java/lang/UnsupportedOperationException.h"
 #include "java/util/HashMap.h"
@@ -59,6 +61,7 @@
 @protocol JavaUtilMap;
 
 
+#pragma clang diagnostic ignored "-Wprotocol"
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 
 @interface ASTextInputLayoutImpl () {
@@ -104,6 +107,8 @@
 }
 
 - (void)setWidgetOnNativeClass;
+
+- (void)nativeRemoveViewWithASIWidget:(id<ASIWidget>)widget;
 
 - (void)createLayoutParamsWithADView:(ADView *)view;
 
@@ -290,6 +295,8 @@ J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl, paramsBuilder_, ASTextInputLayoutImpl
 J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl, paramsBean_, ASTextInputLayoutImpl_TextInputLayoutParamsBean *)
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_setWidgetOnNativeClass(ASTextInputLayoutImpl *self);
+
+__attribute__((unused)) static void ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(ASTextInputLayoutImpl *self, id<ASIWidget> widget);
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_createLayoutParamsWithADView_(ASTextInputLayoutImpl *self, ADView *view);
 
@@ -720,6 +727,23 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_OnLongClickListener)
 
 @end
 
+@interface ASTextInputLayoutImpl_$Lambda$1 : NSObject < JavaLangRunnable > {
+ @public
+  id<ASIWidget> val$widget_;
+}
+
+- (void)run;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(ASTextInputLayoutImpl_$Lambda$1)
+
+__attribute__((unused)) static void ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(ASTextInputLayoutImpl_$Lambda$1 *self, id<ASIWidget> capture$0);
+
+__attribute__((unused)) static ASTextInputLayoutImpl_$Lambda$1 *new_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static ASTextInputLayoutImpl_$Lambda$1 *create_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0);
+
 NSString *ASTextInputLayoutImpl_LOCAL_NAME = @"com.google.android.material.textfield.TextInputLayout";
 NSString *ASTextInputLayoutImpl_GROUP_NAME = @"com.google.android.material.textfield.TextInputLayout";
 
@@ -824,7 +848,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (jboolean)removeWithASIWidget:(id<ASIWidget>)w {
   jboolean remove = [super removeWithASIWidget:w];
   [((ADLinearLayout *) nil_chk(linearLayout_)) removeViewWithADView:(ADView *) cast_chk([((id<ASIWidget>) nil_chk(w)) asWidget], [ADView class])];
-  ASViewGroupImpl_nativeRemoveViewWithASIWidget_(w);
+  ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(self, w);
   return remove;
 }
 
@@ -833,9 +857,13 @@ J2OBJC_IGNORE_DESIGNATED_END
   jboolean remove = [super removeWithInt:index];
   if (index + 1 <= [((ADLinearLayout *) nil_chk(linearLayout_)) getChildCount]) {
     [((ADLinearLayout *) nil_chk(linearLayout_)) removeViewAtWithInt:index];
-    ASViewGroupImpl_nativeRemoveViewWithASIWidget_(widget);
+    ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(self, widget);
   }
   return remove;
+}
+
+- (void)nativeRemoveViewWithASIWidget:(id<ASIWidget>)widget {
+  ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(self, widget);
 }
 
 - (void)addWithASIWidget:(id<ASIWidget>)w
@@ -1693,98 +1721,99 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "LNSObject;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, 6, 7, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, 6, 8, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 9, 10, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 11, 12, -1, -1, -1, -1 },
-    { NULL, "LADLinearLayout_LayoutParams;", 0x2, 13, 12, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 14, 15, -1, -1, -1, -1 },
-    { NULL, "LNSObject;", 0x1, 16, 17, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 9, 7, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 10, 11, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 12, 13, -1, -1, -1, -1 },
+    { NULL, "LADLinearLayout_LayoutParams;", 0x2, 14, 13, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 15, 16, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, 17, 18, -1, -1, -1, -1 },
     { NULL, "LIOSClass;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 18, 19, -1, -1, -1, -1 },
-    { NULL, "LNSObject;", 0x1, 20, 21, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 19, 20, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, 21, 22, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x101, 22, 1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x101, 23, 1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 23, 1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x2, 24, 15, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 25, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 27, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 28, 29, -1, 30, -1, -1 },
+    { NULL, "V", 0x1, 24, 1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x2, 25, 16, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 26, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 28, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 29, 30, -1, 31, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LASHasWidgets;", 0x1, 31, 7, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 32, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 33, 34, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 35, 26, -1, -1, -1, -1 },
+    { NULL, "LASHasWidgets;", 0x1, 32, 7, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 33, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 34, 35, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 36, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 36, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 37, 26, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 37, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 38, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "Z", 0x2, 38, 39, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 40, 19, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 41, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 42, 26, -1, -1, -1, -1 },
-    { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 43, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 44, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 45, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 46, 26, -1, -1, -1, -1 },
+    { NULL, "Z", 0x2, 39, 40, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 41, 20, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 42, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 43, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 44, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 45, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 46, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 47, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 47, 26, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 48, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 49, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 50, 51, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 52, 53, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 54, 51, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 55, 53, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 56, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 57, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 58, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 59, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 60, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 61, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 62, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 63, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 64, 51, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 65, 53, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 66, 26, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 48, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 67, 26, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 68, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 69, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 70, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 71, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 72, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 73, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 74, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 75, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 76, 26, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 49, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 50, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 51, 52, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 53, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 55, 52, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 56, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 57, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 58, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 59, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 60, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 61, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 62, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 63, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 64, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 65, 52, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 66, 54, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 67, 27, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 77, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 78, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 79, 80, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 81, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 82, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 83, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 84, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 85, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 86, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 87, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 88, 26, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 68, 27, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 69, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 70, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 71, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 72, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 73, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 74, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 75, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 76, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 77, 27, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x2, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 78, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 79, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 80, 81, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 82, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 83, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 84, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 85, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 86, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 87, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 88, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 89, 27, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 89, 26, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 90, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 91, 80, -1, -1, -1, -1 },
-    { NULL, "LNSObject;", 0x1, 92, 1, -1, -1, -1, -1 },
+    { NULL, "V", 0x2, 90, 27, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 91, 1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 92, 81, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, 93, 1, -1, -1, -1, -1 },
     { NULL, "LASTextInputLayoutImpl_TextInputLayoutBean;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LASTextInputLayoutImpl_TextInputLayoutCommandBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LASTextInputLayoutImpl_TextInputLayoutParamsBean;", 0x1, -1, -1, -1, -1, -1, -1 },
@@ -1805,109 +1834,110 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[7].selector = @selector(asWidget);
   methods[8].selector = @selector(removeWithASIWidget:);
   methods[9].selector = @selector(removeWithInt:);
-  methods[10].selector = @selector(addWithASIWidget:withInt:);
-  methods[11].selector = @selector(createLayoutParamsWithADView:);
-  methods[12].selector = @selector(getLayoutParamsWithADView:);
-  methods[13].selector = @selector(setChildAttributeWithASIWidget:withASWidgetAttribute:withNSString:withId:);
-  methods[14].selector = @selector(getChildAttributeWithASIWidget:withASWidgetAttribute:);
-  methods[15].selector = @selector(getViewClass);
-  methods[16].selector = @selector(setAttributeWithASWidgetAttribute:withNSString:withId:withASILifeCycleDecorator:);
-  methods[17].selector = @selector(getAttributeWithASWidgetAttribute:withASILifeCycleDecorator:);
-  methods[18].selector = @selector(asNativeWidget);
-  methods[19].selector = @selector(checkIosVersionWithNSString:);
-  methods[20].selector = @selector(requestLayout);
-  methods[21].selector = @selector(invalidate);
-  methods[22].selector = @selector(resetError);
-  methods[23].selector = @selector(showErrorWithNSString:);
-  methods[24].selector = @selector(preSetChildAttributeWithASIWidget:withASWidgetAttribute:withNSString:withId:);
-  methods[25].selector = @selector(setSuffixTextWithId:);
-  methods[26].selector = @selector(setPrefixTextWithId:);
-  methods[27].selector = @selector(nativeCreateWithJavaUtilMap:);
-  methods[28].selector = @selector(initialized);
-  methods[29].selector = @selector(getCompositeLeafWithASIWidget:);
-  methods[30].selector = @selector(setEndIconDrawableWithId:);
-  methods[31].selector = @selector(setEndIconInternalWithId:withBoolean:);
-  methods[32].selector = @selector(setStartIconDrawableWithId:);
-  methods[33].selector = @selector(getEndIconDrawable);
-  methods[34].selector = @selector(getStartIconDrawable);
-  methods[35].selector = @selector(setCounterEnabledWithId:);
-  methods[36].selector = @selector(setCounterMaxLengthWithId:);
-  methods[37].selector = @selector(getCounterMaxLength);
-  methods[38].selector = @selector(updateViewsWithJavaLangCharSequence:);
-  methods[39].selector = @selector(postSetAttributeWithASWidgetAttribute:withNSString:withId:withASILifeCycleDecorator:);
-  methods[40].selector = @selector(setCounterTextColorWithId:);
-  methods[41].selector = @selector(setCounterOverflowTextColorWithId:);
-  methods[42].selector = @selector(getCounterTextColor);
-  methods[43].selector = @selector(getCounterOverflowTextColor);
-  methods[44].selector = @selector(setPlaceholderTextColorWithId:);
-  methods[45].selector = @selector(setPlaceholderTextWithId:);
-  methods[46].selector = @selector(setSuffixTextColorWithId:);
-  methods[47].selector = @selector(setPrefixTextColorWithId:);
-  methods[48].selector = @selector(getSuffixTextColor);
-  methods[49].selector = @selector(getPrefixTextColor);
-  methods[50].selector = @selector(getPlaceholderTextColor);
-  methods[51].selector = @selector(setHintWithId:);
-  methods[52].selector = @selector(getHint);
-  methods[53].selector = @selector(getHintTextColor);
-  methods[54].selector = @selector(setHintTextColorWithId:);
-  methods[55].selector = @selector(setHintEnabledWithId:);
-  methods[56].selector = @selector(setStartIconOnLongClickListenerWithADView_OnLongClickListener:);
-  methods[57].selector = @selector(setStartIconOnClickListenerWithADView_OnClickListener:);
-  methods[58].selector = @selector(setEndIconOnLongClickListenerWithADView_OnLongClickListener:);
-  methods[59].selector = @selector(setEndIconOnClickListenerWithADView_OnClickListener:);
-  methods[60].selector = @selector(setEndIconVisibleWithId:);
-  methods[61].selector = @selector(setStartIconVisibleWithId:);
-  methods[62].selector = @selector(setHelperTextWithId:);
-  methods[63].selector = @selector(setHelperTextColorWithId:);
-  methods[64].selector = @selector(setHelperTextEnabledWithId:);
-  methods[65].selector = @selector(setErrorTextColorWithId:);
-  methods[66].selector = @selector(setErrorEnabledWithId:);
-  methods[67].selector = @selector(setMyErrorWithId:);
-  methods[68].selector = @selector(setErrorIconOnLongClickListenerWithADView_OnLongClickListener:);
-  methods[69].selector = @selector(setErrorIconOnClickListenerWithADView_OnClickListener:);
-  methods[70].selector = @selector(setErrorIconDrawableWithId:);
-  methods[71].selector = @selector(getErrorIconDrawable);
-  methods[72].selector = @selector(setEndIconModeWithId:);
-  methods[73].selector = @selector(getEndIconMode);
-  methods[74].selector = @selector(setBoxBackgroundColorStateListWithId:);
-  methods[75].selector = @selector(setBoxBackgroundModeWithId:);
-  methods[76].selector = @selector(setBoxStrokeWidthWithId:);
-  methods[77].selector = @selector(setBoxStrokeErrorColorWithId:);
-  methods[78].selector = @selector(setBoxCornerRadiusBottomStartWithId:);
-  methods[79].selector = @selector(setBoxCornerRadiusBottomEndWithId:);
-  methods[80].selector = @selector(setBoxCornerRadiusTopEndWithId:);
-  methods[81].selector = @selector(setBoxCornerRadiusTopStartWithId:);
-  methods[82].selector = @selector(fixBorderRadiusPaddingWithId:);
-  methods[83].selector = @selector(getBoxStrokeErrorColor);
-  methods[84].selector = @selector(setEnabledWithId:);
-  methods[85].selector = @selector(setBoxStrokeColorStateListWithId:);
-  methods[86].selector = @selector(updateIconStateWithBoolean:);
-  methods[87].selector = @selector(setHintTextAppearanceWithId:);
-  methods[88].selector = @selector(setSuffixTextAppearanceWithId:);
-  methods[89].selector = @selector(setCounterOverflowTextAppearanceWithId:);
-  methods[90].selector = @selector(setPrefixTextAppearanceWithId:);
-  methods[91].selector = @selector(setHelperTextTextAppearanceWithId:);
-  methods[92].selector = @selector(setErrorTextAppearanceWithId:);
-  methods[93].selector = @selector(setCounterTextAppearanceWithId:);
-  methods[94].selector = @selector(setErrorWithId:);
-  methods[95].selector = @selector(getTextEntered);
-  methods[96].selector = @selector(isViewVisible);
-  methods[97].selector = @selector(focus);
-  methods[98].selector = @selector(setBoxPaddingWithId:);
-  methods[99].selector = @selector(setIdWithNSString:);
-  methods[100].selector = @selector(setVisibleWithBoolean:);
-  methods[101].selector = @selector(getPluginWithNSString:);
-  methods[102].selector = @selector(getBean);
-  methods[103].selector = @selector(getBuilder);
-  methods[104].selector = @selector(getParamsBean);
-  methods[105].selector = @selector(getParamsBuilder);
-  methods[106].selector = @selector(syncBackground);
-  methods[107].selector = @selector(isPaddingFixNeeded);
+  methods[10].selector = @selector(nativeRemoveViewWithASIWidget:);
+  methods[11].selector = @selector(addWithASIWidget:withInt:);
+  methods[12].selector = @selector(createLayoutParamsWithADView:);
+  methods[13].selector = @selector(getLayoutParamsWithADView:);
+  methods[14].selector = @selector(setChildAttributeWithASIWidget:withASWidgetAttribute:withNSString:withId:);
+  methods[15].selector = @selector(getChildAttributeWithASIWidget:withASWidgetAttribute:);
+  methods[16].selector = @selector(getViewClass);
+  methods[17].selector = @selector(setAttributeWithASWidgetAttribute:withNSString:withId:withASILifeCycleDecorator:);
+  methods[18].selector = @selector(getAttributeWithASWidgetAttribute:withASILifeCycleDecorator:);
+  methods[19].selector = @selector(asNativeWidget);
+  methods[20].selector = @selector(checkIosVersionWithNSString:);
+  methods[21].selector = @selector(requestLayout);
+  methods[22].selector = @selector(invalidate);
+  methods[23].selector = @selector(resetError);
+  methods[24].selector = @selector(showErrorWithNSString:);
+  methods[25].selector = @selector(preSetChildAttributeWithASIWidget:withASWidgetAttribute:withNSString:withId:);
+  methods[26].selector = @selector(setSuffixTextWithId:);
+  methods[27].selector = @selector(setPrefixTextWithId:);
+  methods[28].selector = @selector(nativeCreateWithJavaUtilMap:);
+  methods[29].selector = @selector(initialized);
+  methods[30].selector = @selector(getCompositeLeafWithASIWidget:);
+  methods[31].selector = @selector(setEndIconDrawableWithId:);
+  methods[32].selector = @selector(setEndIconInternalWithId:withBoolean:);
+  methods[33].selector = @selector(setStartIconDrawableWithId:);
+  methods[34].selector = @selector(getEndIconDrawable);
+  methods[35].selector = @selector(getStartIconDrawable);
+  methods[36].selector = @selector(setCounterEnabledWithId:);
+  methods[37].selector = @selector(setCounterMaxLengthWithId:);
+  methods[38].selector = @selector(getCounterMaxLength);
+  methods[39].selector = @selector(updateViewsWithJavaLangCharSequence:);
+  methods[40].selector = @selector(postSetAttributeWithASWidgetAttribute:withNSString:withId:withASILifeCycleDecorator:);
+  methods[41].selector = @selector(setCounterTextColorWithId:);
+  methods[42].selector = @selector(setCounterOverflowTextColorWithId:);
+  methods[43].selector = @selector(getCounterTextColor);
+  methods[44].selector = @selector(getCounterOverflowTextColor);
+  methods[45].selector = @selector(setPlaceholderTextColorWithId:);
+  methods[46].selector = @selector(setPlaceholderTextWithId:);
+  methods[47].selector = @selector(setSuffixTextColorWithId:);
+  methods[48].selector = @selector(setPrefixTextColorWithId:);
+  methods[49].selector = @selector(getSuffixTextColor);
+  methods[50].selector = @selector(getPrefixTextColor);
+  methods[51].selector = @selector(getPlaceholderTextColor);
+  methods[52].selector = @selector(setHintWithId:);
+  methods[53].selector = @selector(getHint);
+  methods[54].selector = @selector(getHintTextColor);
+  methods[55].selector = @selector(setHintTextColorWithId:);
+  methods[56].selector = @selector(setHintEnabledWithId:);
+  methods[57].selector = @selector(setStartIconOnLongClickListenerWithADView_OnLongClickListener:);
+  methods[58].selector = @selector(setStartIconOnClickListenerWithADView_OnClickListener:);
+  methods[59].selector = @selector(setEndIconOnLongClickListenerWithADView_OnLongClickListener:);
+  methods[60].selector = @selector(setEndIconOnClickListenerWithADView_OnClickListener:);
+  methods[61].selector = @selector(setEndIconVisibleWithId:);
+  methods[62].selector = @selector(setStartIconVisibleWithId:);
+  methods[63].selector = @selector(setHelperTextWithId:);
+  methods[64].selector = @selector(setHelperTextColorWithId:);
+  methods[65].selector = @selector(setHelperTextEnabledWithId:);
+  methods[66].selector = @selector(setErrorTextColorWithId:);
+  methods[67].selector = @selector(setErrorEnabledWithId:);
+  methods[68].selector = @selector(setMyErrorWithId:);
+  methods[69].selector = @selector(setErrorIconOnLongClickListenerWithADView_OnLongClickListener:);
+  methods[70].selector = @selector(setErrorIconOnClickListenerWithADView_OnClickListener:);
+  methods[71].selector = @selector(setErrorIconDrawableWithId:);
+  methods[72].selector = @selector(getErrorIconDrawable);
+  methods[73].selector = @selector(setEndIconModeWithId:);
+  methods[74].selector = @selector(getEndIconMode);
+  methods[75].selector = @selector(setBoxBackgroundColorStateListWithId:);
+  methods[76].selector = @selector(setBoxBackgroundModeWithId:);
+  methods[77].selector = @selector(setBoxStrokeWidthWithId:);
+  methods[78].selector = @selector(setBoxStrokeErrorColorWithId:);
+  methods[79].selector = @selector(setBoxCornerRadiusBottomStartWithId:);
+  methods[80].selector = @selector(setBoxCornerRadiusBottomEndWithId:);
+  methods[81].selector = @selector(setBoxCornerRadiusTopEndWithId:);
+  methods[82].selector = @selector(setBoxCornerRadiusTopStartWithId:);
+  methods[83].selector = @selector(fixBorderRadiusPaddingWithId:);
+  methods[84].selector = @selector(getBoxStrokeErrorColor);
+  methods[85].selector = @selector(setEnabledWithId:);
+  methods[86].selector = @selector(setBoxStrokeColorStateListWithId:);
+  methods[87].selector = @selector(updateIconStateWithBoolean:);
+  methods[88].selector = @selector(setHintTextAppearanceWithId:);
+  methods[89].selector = @selector(setSuffixTextAppearanceWithId:);
+  methods[90].selector = @selector(setCounterOverflowTextAppearanceWithId:);
+  methods[91].selector = @selector(setPrefixTextAppearanceWithId:);
+  methods[92].selector = @selector(setHelperTextTextAppearanceWithId:);
+  methods[93].selector = @selector(setErrorTextAppearanceWithId:);
+  methods[94].selector = @selector(setCounterTextAppearanceWithId:);
+  methods[95].selector = @selector(setErrorWithId:);
+  methods[96].selector = @selector(getTextEntered);
+  methods[97].selector = @selector(isViewVisible);
+  methods[98].selector = @selector(focus);
+  methods[99].selector = @selector(setBoxPaddingWithId:);
+  methods[100].selector = @selector(setIdWithNSString:);
+  methods[101].selector = @selector(setVisibleWithBoolean:);
+  methods[102].selector = @selector(getPluginWithNSString:);
+  methods[103].selector = @selector(getBean);
+  methods[104].selector = @selector(getBuilder);
+  methods[105].selector = @selector(getParamsBean);
+  methods[106].selector = @selector(getParamsBuilder);
+  methods[107].selector = @selector(syncBackground);
+  methods[108].selector = @selector(isPaddingFixNeeded);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "uiView_", "LNSObject;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
-    { "LOCAL_NAME", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 93, -1, -1 },
-    { "GROUP_NAME", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 94, -1, -1 },
+    { "LOCAL_NAME", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 94, -1, -1 },
+    { "GROUP_NAME", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 95, -1, -1 },
     { "linearLayout_", "LADLinearLayout;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "suffixTextView_", "LASIWidget;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "prefixTextView_", "LASIWidget;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
@@ -1946,8 +1976,8 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "paramsBuilder_", "LASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "paramsBean_", "LASTextInputLayoutImpl_TextInputLayoutParamsBean;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "loadAttributes", "LNSString;", "LNSString;LNSString;", "create", "LASIFragment;LJavaUtilMap;", "(Lcom/ashera/core/IFragment;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", "remove", "LASIWidget;", "I", "add", "LASIWidget;I", "createLayoutParams", "LADView;", "getLayoutParams", "setChildAttribute", "LASIWidget;LASWidgetAttribute;LNSString;LNSObject;", "getChildAttribute", "LASIWidget;LASWidgetAttribute;", "setAttribute", "LASWidgetAttribute;LNSString;LNSObject;LASILifeCycleDecorator;", "getAttribute", "LASWidgetAttribute;LASILifeCycleDecorator;", "checkIosVersion", "showError", "preSetChildAttribute", "setSuffixText", "LNSObject;", "setPrefixText", "nativeCreate", "LJavaUtilMap;", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", "getCompositeLeaf", "setEndIconDrawable", "setEndIconInternal", "LNSObject;Z", "setStartIconDrawable", "setCounterEnabled", "setCounterMaxLength", "updateViews", "LJavaLangCharSequence;", "postSetAttribute", "setCounterTextColor", "setCounterOverflowTextColor", "setPlaceholderTextColor", "setPlaceholderText", "setSuffixTextColor", "setPrefixTextColor", "setHint", "setHintTextColor", "setHintEnabled", "setStartIconOnLongClickListener", "LADView_OnLongClickListener;", "setStartIconOnClickListener", "LADView_OnClickListener;", "setEndIconOnLongClickListener", "setEndIconOnClickListener", "setEndIconVisible", "setStartIconVisible", "setHelperText", "setHelperTextColor", "setHelperTextEnabled", "setErrorTextColor", "setErrorEnabled", "setMyError", "setErrorIconOnLongClickListener", "setErrorIconOnClickListener", "setErrorIconDrawable", "setEndIconMode", "setBoxBackgroundColorStateList", "setBoxBackgroundMode", "setBoxStrokeWidth", "setBoxStrokeErrorColor", "setBoxCornerRadiusBottomStart", "setBoxCornerRadiusBottomEnd", "setBoxCornerRadiusTopEnd", "setBoxCornerRadiusTopStart", "fixBorderRadiusPadding", "setEnabled", "setBoxStrokeColorStateList", "updateIconState", "Z", "setHintTextAppearance", "setSuffixTextAppearance", "setCounterOverflowTextAppearance", "setPrefixTextAppearance", "setHelperTextTextAppearance", "setErrorTextAppearance", "setCounterTextAppearance", "setError", "setBoxPadding", "setId", "setVisible", "getPlugin", &ASTextInputLayoutImpl_LOCAL_NAME, &ASTextInputLayoutImpl_GROUP_NAME, "LASTextInputLayoutImpl_EndIconMode;LASTextInputLayoutImpl_BoxBackgroundMode;LASTextInputLayoutImpl_TextInputLayoutExt;LASTextInputLayoutImpl_OnClickListener;LASTextInputLayoutImpl_OnLongClickListener;LASTextInputLayoutImpl_TextInputLayoutCommandBuilder;LASTextInputLayoutImpl_TextInputLayoutBean;LASTextInputLayoutImpl_TextInputLayoutParamsBean;LASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder;" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl = { "TextInputLayoutImpl", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x1, 108, 40, -1, 95, -1, -1, -1 };
+  static const void *ptrTable[] = { "loadAttributes", "LNSString;", "LNSString;LNSString;", "create", "LASIFragment;LJavaUtilMap;", "(Lcom/ashera/core/IFragment;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", "remove", "LASIWidget;", "I", "nativeRemoveView", "add", "LASIWidget;I", "createLayoutParams", "LADView;", "getLayoutParams", "setChildAttribute", "LASIWidget;LASWidgetAttribute;LNSString;LNSObject;", "getChildAttribute", "LASIWidget;LASWidgetAttribute;", "setAttribute", "LASWidgetAttribute;LNSString;LNSObject;LASILifeCycleDecorator;", "getAttribute", "LASWidgetAttribute;LASILifeCycleDecorator;", "checkIosVersion", "showError", "preSetChildAttribute", "setSuffixText", "LNSObject;", "setPrefixText", "nativeCreate", "LJavaUtilMap;", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", "getCompositeLeaf", "setEndIconDrawable", "setEndIconInternal", "LNSObject;Z", "setStartIconDrawable", "setCounterEnabled", "setCounterMaxLength", "updateViews", "LJavaLangCharSequence;", "postSetAttribute", "setCounterTextColor", "setCounterOverflowTextColor", "setPlaceholderTextColor", "setPlaceholderText", "setSuffixTextColor", "setPrefixTextColor", "setHint", "setHintTextColor", "setHintEnabled", "setStartIconOnLongClickListener", "LADView_OnLongClickListener;", "setStartIconOnClickListener", "LADView_OnClickListener;", "setEndIconOnLongClickListener", "setEndIconOnClickListener", "setEndIconVisible", "setStartIconVisible", "setHelperText", "setHelperTextColor", "setHelperTextEnabled", "setErrorTextColor", "setErrorEnabled", "setMyError", "setErrorIconOnLongClickListener", "setErrorIconOnClickListener", "setErrorIconDrawable", "setEndIconMode", "setBoxBackgroundColorStateList", "setBoxBackgroundMode", "setBoxStrokeWidth", "setBoxStrokeErrorColor", "setBoxCornerRadiusBottomStart", "setBoxCornerRadiusBottomEnd", "setBoxCornerRadiusTopEnd", "setBoxCornerRadiusTopStart", "fixBorderRadiusPadding", "setEnabled", "setBoxStrokeColorStateList", "updateIconState", "Z", "setHintTextAppearance", "setSuffixTextAppearance", "setCounterOverflowTextAppearance", "setPrefixTextAppearance", "setHelperTextTextAppearance", "setErrorTextAppearance", "setCounterTextAppearance", "setError", "setBoxPadding", "setId", "setVisible", "getPlugin", &ASTextInputLayoutImpl_LOCAL_NAME, &ASTextInputLayoutImpl_GROUP_NAME, "LASTextInputLayoutImpl_EndIconMode;LASTextInputLayoutImpl_BoxBackgroundMode;LASTextInputLayoutImpl_TextInputLayoutExt;LASTextInputLayoutImpl_OnClickListener;LASTextInputLayoutImpl_OnLongClickListener;LASTextInputLayoutImpl_TextInputLayoutCommandBuilder;LASTextInputLayoutImpl_TextInputLayoutBean;LASTextInputLayoutImpl_TextInputLayoutParamsBean;LASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder;" };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl = { "TextInputLayoutImpl", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x1, 109, 40, -1, 96, -1, -1, -1 };
   return &_ASTextInputLayoutImpl;
 }
 
@@ -2006,6 +2036,16 @@ ASTextInputLayoutImpl *create_ASTextInputLayoutImpl_initWithNSString_withNSStrin
 
 void ASTextInputLayoutImpl_setWidgetOnNativeClass(ASTextInputLayoutImpl *self) {
   ((ASUIView*) [self asNativeWidget]).widget = self;
+}
+
+void ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(ASTextInputLayoutImpl *self, id<ASIWidget> widget) {
+  ADLayoutTransition *layoutTransition = [((ADLinearLayout *) nil_chk(self->linearLayout_)) getLayoutTransition];
+  if (layoutTransition != nil && ([layoutTransition isTransitionTypeEnabledWithInt:ADLayoutTransition_CHANGE_DISAPPEARING] || [layoutTransition isTransitionTypeEnabledWithInt:ADLayoutTransition_DISAPPEARING])) {
+    [self addToBufferedRunnablesWithJavaLangRunnable:new_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(widget)];
+  }
+  else {
+    ASViewGroupImpl_nativeRemoveViewWithASIWidget_(widget);
+  }
 }
 
 void ASTextInputLayoutImpl_createLayoutParamsWithADView_(ASTextInputLayoutImpl *self, ADView *view) {
@@ -2863,6 +2903,11 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   ASViewImpl_stateNoWithASIWidget_(this$0_);
 }
 
+- (void)endViewTransitionWithADView:(ADView *)view {
+  [super endViewTransitionWithADView:view];
+  [this$0_ runBufferedRunnables];
+}
+
 - (void)__javaClone:(ASTextInputLayoutImpl_TextInputLayoutExt *)original {
   [super __javaClone:original];
   JreRelease(this$0_);
@@ -2907,6 +2952,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 35, 36, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -2948,6 +2994,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   methods[34].selector = @selector(state4);
   methods[35].selector = @selector(stateYes);
   methods[36].selector = @selector(stateNo);
+  methods[37].selector = @selector(endViewTransitionWithADView:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
@@ -2955,10 +3002,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
     { "onLayoutEvent_", "LASOnLayoutEvent;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "mMaxWidth_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "mMaxHeight_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
-    { "templates_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x2, -1, -1, 35, -1 },
+    { "templates_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x2, -1, -1, 37, -1 },
   };
-  static const void *ptrTable[] = { "setMaxWidth", "I", "setMaxHeight", "LASTextInputLayoutImpl;", "onMeasure", "II", "onLayout", "ZIIII", "execute", "LNSString;[LNSObject;", "updateMeasuredDimension", "newInstance", "LASIWidget;", "setAttribute", "LASWidgetAttribute;LNSString;LNSObject;", "()Ljava/util/List<Ljava/lang/String;>;", "getAttribute", "LASWidgetAttribute;", "inflateView", "LNSString;", "getLocationOnScreen", "[I", "getWindowVisibleDisplayFrame", "LADRect;", "offsetTopAndBottom", "offsetLeftAndRight", "setMyAttribute", "LNSString;LNSObject;", "setVisibility", "setState0", "LNSObject;", "setState1", "setState2", "setState3", "setState4", "Ljava/util/Map<Ljava/lang/String;Lcom/ashera/widget/IWidget;>;" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_TextInputLayoutExt = { "TextInputLayoutExt", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x1, 37, 6, 3, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "setMaxWidth", "I", "setMaxHeight", "LASTextInputLayoutImpl;", "onMeasure", "II", "onLayout", "ZIIII", "execute", "LNSString;[LNSObject;", "updateMeasuredDimension", "newInstance", "LASIWidget;", "setAttribute", "LASWidgetAttribute;LNSString;LNSObject;", "()Ljava/util/List<Ljava/lang/String;>;", "getAttribute", "LASWidgetAttribute;", "inflateView", "LNSString;", "getLocationOnScreen", "[I", "getWindowVisibleDisplayFrame", "LADRect;", "offsetTopAndBottom", "offsetLeftAndRight", "setMyAttribute", "LNSString;LNSObject;", "setVisibility", "setState0", "LNSObject;", "setState1", "setState2", "setState3", "setState4", "endViewTransition", "LADView;", "Ljava/util/Map<Ljava/lang/String;Lcom/ashera/widget/IWidget;>;" };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_TextInputLayoutExt = { "TextInputLayoutExt", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x1, 38, 6, 3, -1, -1, -1, -1 };
   return &_ASTextInputLayoutImpl_TextInputLayoutExt;
 }
 
@@ -4896,3 +4943,24 @@ ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *create_ASTextInputLay
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder)
+
+@implementation ASTextInputLayoutImpl_$Lambda$1
+
+- (void)run {
+  ASViewGroupImpl_nativeRemoveViewWithASIWidget_(val$widget_);
+}
+
+@end
+
+void ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(ASTextInputLayoutImpl_$Lambda$1 *self, id<ASIWidget> capture$0) {
+  self->val$widget_ = capture$0;
+  NSObject_init(self);
+}
+
+ASTextInputLayoutImpl_$Lambda$1 *new_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0) {
+  J2OBJC_NEW_IMPL(ASTextInputLayoutImpl_$Lambda$1, initWithASIWidget_, capture$0)
+}
+
+ASTextInputLayoutImpl_$Lambda$1 *create_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0) {
+  J2OBJC_CREATE_IMPL(ASTextInputLayoutImpl_$Lambda$1, initWithASIWidget_, capture$0)
+}
