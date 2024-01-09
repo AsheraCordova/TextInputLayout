@@ -182,7 +182,7 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
         }    
         return remove;
     }
-	
+
 	private void nativeRemoveView(IWidget widget) {
 		r.android.animation.LayoutTransition layoutTransition = linearLayout.getLayoutTransition();
 		if (layoutTransition != null && (
