@@ -413,7 +413,9 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
         
     	@Override
 		public void remeasure() {
-			getFragment().remeasure();
+    		if (getFragment() != null) {
+    			getFragment().remeasure();
+    		}
 		}
     	
         @Override

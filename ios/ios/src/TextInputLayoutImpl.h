@@ -440,6 +440,10 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setAlphaWithFloat:(jfloat)arg0;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setAnimateLayoutChangesWithBoolean:(jboolean)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setAnimateParentHierarchyWithBoolean:(jboolean)arg0;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setAsDragSourceWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setAttributeUnderTestWithNSString:(NSString *)arg0;
@@ -451,6 +455,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setBackgroundTintWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setBackgroundWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setBottomWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setBoxBackgroundColorWithNSString:(NSString *)value;
 
@@ -630,6 +636,12 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setLayoutModeWithNSString:(NSString *)arg0;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setLayoutTransitionDurationWithInt:(jint)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setLayoutTransitionWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setLeftWithNSString:(NSString *)arg0;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setListitemWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setLongClickableWithBoolean:(jboolean)arg0;
@@ -714,6 +726,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setPrefixTextColorWithNSString:(NSString *)value;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setRightWithNSString:(NSString *)arg0;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setRotationWithFloat:(jfloat)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setRotationXWithFloat:(jfloat)arg0;
@@ -745,6 +759,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setTextAlignmentWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setTextDirectionWithNSString:(NSString *)arg0;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setTopWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setTransformPivotXWithNSString:(NSString *)arg0;
 
@@ -789,6 +805,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetBackgroundTint;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetBackgroundTintMode;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetBottom;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetBoxStrokeErrorColor;
 
@@ -894,6 +912,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetLayoutMode;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetLeft;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetLongClickable;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetMaxHeight;
@@ -932,6 +952,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetPrefixTextColor;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetRight;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetRotation;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetRotationX;
@@ -951,6 +973,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetTextAlignment;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetTextDirection;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetTop;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)tryGetTransformPivotX;
 
