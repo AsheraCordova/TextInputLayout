@@ -2251,7 +2251,9 @@ jboolean ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputL
       }
     }
     [((id<ASIWidget>) nil_chk(self->editText_)) setAttributeWithNSString:@"enabled" withId:JavaLangBoolean_valueOfWithBoolean_(self->enabled_) withBoolean:true];
-    [((id<ASIWidget>) nil_chk(self->editText_)) setAttributeWithNSString:@"password" withId:JavaLangBoolean_valueOfWithBoolean_(self->endIconMode_ == 1) withBoolean:true];
+    if (self->endIconMode_ == 1) {
+      [((id<ASIWidget>) nil_chk(self->editText_)) setAttributeWithNSString:@"password" withId:JavaLangBoolean_valueOfWithBoolean_(self->endIconMode_ == 1) withBoolean:true];
+    }
     if (self->endIconMode_ == 3) {
       (void) [((id<ASIWidget>) nil_chk(self->editText_)) invokeMethodWithNSString:@"setDataObserver" withNSObjectArray:[IOSObjectArray newArrayWithObjects:(id[]){ create_ASTextInputLayoutImpl_2_initWithASTextInputLayoutImpl_(self) } count:1 type:NSObject_class_()]];
       [((id<ASIWidget>) nil_chk(self->editText_)) setAttributeWithNSString:@"onDismiss" withId:new_ASTextInputLayoutImpl_3_initWithASTextInputLayoutImpl_(self) withBoolean:true];

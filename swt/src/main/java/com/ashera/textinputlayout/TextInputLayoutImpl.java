@@ -2434,8 +2434,9 @@ return this;}
 			editText.setAttribute("enabled", enabled, true);
 
 			// end icon mode
-			
-			editText.setAttribute("password", endIconMode == 1, true);
+			if (endIconMode == 1) {
+				editText.setAttribute("password", endIconMode == 1, true);
+			}
 			if (endIconMode == 3) {
 				editText.invokeMethod("setDataObserver", new r.android.database.DataSetObserver() {
 					@Override
