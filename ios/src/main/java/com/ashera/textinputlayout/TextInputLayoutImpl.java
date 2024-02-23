@@ -83,6 +83,7 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
 	public void loadAttributes(String localName) {
 		ViewGroupImpl.register(localName);
 
+		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("hintTextFormat").withType("resourcestring").withOrder(-1));
 		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("hint").withType("resourcestring"));
 		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("prefixText").withType("resourcestring"));
 		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("suffixText").withType("resourcestring"));
@@ -135,6 +136,8 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
 		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("suffixTextAppearance").withType("string"));
 		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("boxPadding").withType("dimension"));
 	
+		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("layout_gravity").withType("gravity").forChild());
+		WidgetFactory.registerAttribute(localName, new WidgetAttribute.Builder().withName("layout_weight").withType("float").forChild());
 	}
 	
 	public TextInputLayoutImpl() {
@@ -252,6 +255,18 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
 		case "layout_height":
 			layoutParams.height = (int) objValue;
 			break;
+			case "layout_gravity": {
+				
+							layoutParams.gravity = ((int)objValue);
+				
+			}
+			break;
+			case "layout_weight": {
+				
+							layoutParams.weight = ((float)objValue);
+				
+			}
+			break;
 		default:
 			break;
 		}
@@ -275,6 +290,12 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
 			return layoutParams.width;
 		case "layout_height":
 			return layoutParams.height;
+			case "layout_gravity": {
+return layoutParams.gravity;			}
+
+			case "layout_weight": {
+return layoutParams.weight;			}
+
 		}
 		
 		return null;
@@ -533,6 +554,15 @@ public class TextInputLayoutImpl extends BaseHasWidgets implements com.ashera.va
 		ViewGroupImpl.setAttribute(this, key, strValue, objValue, decorator);
 		Object nativeWidget = asNativeWidget();
 		switch (key.getAttributeName()) {
+			case "hintTextFormat": {
+
+
+		setHintTextFormat(objValue);
+
+
+
+			}
+			break;
 			case "hint": {
 
 
@@ -1078,6 +1108,12 @@ return getBoxStrokeErrorColor();			}
 	
 
 
+	private void setHintTextFormat(Object objValue) {
+		applyAttributeCommand("hint", CommonConverters.command_textformatter, new String[] {"hintTextFormat"}, true, (String) objValue);
+	}
+	
+
+
 	private IWidget suffixTextView;
 	private IWidget prefixTextView;
 	private HasWidgets editTextHolder;
@@ -1144,6 +1180,7 @@ return getBoxStrokeErrorColor();			}
 		innerLayout = (IWidget) widget.findWidgetById("@+id/inputFrame");
 		
 		mainWidget = widget;
+		registerForAttributeCommandChain("hint");
 	}
 
 	@Override
@@ -1951,6 +1988,14 @@ public  class TextInputLayoutCommandBuilder extends com.ashera.layout.ViewGroupI
 		executeCommand(command, null, IWidget.COMMAND_EXEC_GETTER_METHOD);
 return this;	}
 
+public TextInputLayoutCommandBuilder setHintTextFormat(String value) {
+	Map<String, Object> attrs = initCommand("hintTextFormat");
+	attrs.put("type", "attribute");
+	attrs.put("setter", true);
+	attrs.put("orderSet", ++orderSet);
+
+	attrs.put("value", value);
+return this;}
 public TextInputLayoutCommandBuilder tryGetHint() {
 	Map<String, Object> attrs = initCommand("hint");
 	attrs.put("type", "attribute");
@@ -2491,6 +2536,10 @@ public class TextInputLayoutBean extends com.ashera.layout.ViewGroupImpl.ViewGro
 		public TextInputLayoutBean() {
 			super(TextInputLayoutImpl.this);
 		}
+public void setHintTextFormat(String value) {
+	getBuilder().reset().setHintTextFormat(value).execute(true);
+}
+
 public Object getHint() {
 	return getBuilder().reset().tryGetHint().execute(false).getHint(); 
 }
@@ -2748,6 +2797,36 @@ public TextInputLayoutCommandParamsBuilder getParamsBuilder() {
 
 
 public class TextInputLayoutParamsBean extends com.ashera.layout.ViewGroupImpl.ViewGroupParamsBean{
+public Object getLayoutGravity(IWidget w) {
+	java.util.Map<String, Object> layoutParams = new java.util.HashMap<String, Object>();
+	java.util.Map<String, Object> command = getParamsBuilder().reset().tryGetLayoutGravity().getCommand();
+	
+	layoutParams.put("layoutParams", command);
+	w.executeCommand(layoutParams, null, COMMAND_EXEC_GETTER_METHOD); 
+	return getParamsBuilder().getLayoutGravity();
+}
+public void setLayoutGravity(IWidget w, String value) {
+	java.util.Map<String, Object> layoutParams = new java.util.HashMap<String, Object>();
+	layoutParams.put("layoutParams", getParamsBuilder().reset().setLayoutGravity(value).getCommand());
+	w.executeCommand(layoutParams, null, COMMAND_EXEC_SETTER_METHOD);
+	w.getFragment().remeasure();
+}
+
+public Object getLayoutWeight(IWidget w) {
+	java.util.Map<String, Object> layoutParams = new java.util.HashMap<String, Object>();
+	java.util.Map<String, Object> command = getParamsBuilder().reset().tryGetLayoutWeight().getCommand();
+	
+	layoutParams.put("layoutParams", command);
+	w.executeCommand(layoutParams, null, COMMAND_EXEC_GETTER_METHOD); 
+	return getParamsBuilder().getLayoutWeight();
+}
+public void setLayoutWeight(IWidget w, float value) {
+	java.util.Map<String, Object> layoutParams = new java.util.HashMap<String, Object>();
+	layoutParams.put("layoutParams", getParamsBuilder().reset().setLayoutWeight(value).getCommand());
+	w.executeCommand(layoutParams, null, COMMAND_EXEC_SETTER_METHOD);
+	w.getFragment().remeasure();
+}
+
 }
 
 
@@ -2755,6 +2834,44 @@ public class TextInputLayoutParamsBean extends com.ashera.layout.ViewGroupImpl.V
 
 
 public class TextInputLayoutCommandParamsBuilder extends com.ashera.layout.ViewGroupImpl.ViewGroupCommandParamsBuilder<TextInputLayoutCommandParamsBuilder>{
+public TextInputLayoutCommandParamsBuilder tryGetLayoutGravity() {
+	Map<String, Object> attrs = initCommand("layout_gravity");
+	attrs.put("type", "attribute");
+	attrs.put("getter", true);
+	attrs.put("orderGet", ++orderGet);
+return this;}
+
+public Object getLayoutGravity() {
+	Map<String, Object> attrs = initCommand("layout_gravity");
+	return attrs.get("commandReturnValue");
+}
+public TextInputLayoutCommandParamsBuilder setLayoutGravity(String value) {
+	Map<String, Object> attrs = initCommand("layout_gravity");
+	attrs.put("type", "attribute");
+	attrs.put("setter", true);
+	attrs.put("orderSet", ++orderSet);
+
+	attrs.put("value", value);
+return this;}
+public TextInputLayoutCommandParamsBuilder tryGetLayoutWeight() {
+	Map<String, Object> attrs = initCommand("layout_weight");
+	attrs.put("type", "attribute");
+	attrs.put("getter", true);
+	attrs.put("orderGet", ++orderGet);
+return this;}
+
+public Object getLayoutWeight() {
+	Map<String, Object> attrs = initCommand("layout_weight");
+	return attrs.get("commandReturnValue");
+}
+public TextInputLayoutCommandParamsBuilder setLayoutWeight(float value) {
+	Map<String, Object> attrs = initCommand("layout_weight");
+	attrs.put("type", "attribute");
+	attrs.put("setter", true);
+	attrs.put("orderSet", ++orderSet);
+
+	attrs.put("value", value);
+return this;}
 }
 
 	//end - body

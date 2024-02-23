@@ -564,6 +564,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutExt)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setHintTextColorWithNSString:(NSString *)value;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setHintTextFormatWithNSString:(NSString *)value;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setIdWithNSString:(NSString *)arg0;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandBuilder *)setInvalidateOnFrameChangeWithBoolean:(jboolean)arg0;
@@ -1129,6 +1131,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutCommandBuilder)
 
 - (void)setHintTextColorWithNSString:(NSString *)value;
 
+- (void)setHintTextFormatWithNSString:(NSString *)value;
+
 - (void)setPlaceholderTextWithNSString:(NSString *)value;
 
 - (void)setPlaceholderTextColorWithNSString:(NSString *)value;
@@ -1179,12 +1183,23 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutBean)
 #include "ViewGroupImpl.h"
 
 @class ASTextInputLayoutImpl;
+@protocol ASIWidget;
 
 @interface ASTextInputLayoutImpl_TextInputLayoutParamsBean : ASViewGroupImpl_ViewGroupParamsBean
 
 #pragma mark Public
 
 - (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$;
+
+- (id)getLayoutGravityWithASIWidget:(id<ASIWidget>)w;
+
+- (id)getLayoutWeightWithASIWidget:(id<ASIWidget>)w;
+
+- (void)setLayoutGravityWithASIWidget:(id<ASIWidget>)w
+                         withNSString:(NSString *)value;
+
+- (void)setLayoutWeightWithASIWidget:(id<ASIWidget>)w
+                           withFloat:(jfloat)value;
 
 // Disallowed inherited constructors, do not use.
 
@@ -1219,7 +1234,13 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutParamsBean)
 
 - (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$;
 
+- (id)getLayoutGravity;
+
+- (id)getLayoutWeight;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)reset;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)setLayoutGravityWithNSString:(NSString *)value;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)setLayoutMarginBottomWithNSString:(NSString *)arg0;
 
@@ -1239,6 +1260,10 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutParamsBean)
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)setLayoutMarginWithNSString:(NSString *)arg0;
 
+- (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)setLayoutWeightWithFloat:(jfloat)value;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutGravity;
+
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutMarginBottom;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutMarginEnd;
@@ -1250,6 +1275,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_TextInputLayoutParamsBean)
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutMarginStart;
 
 - (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutMarginTop;
+
+- (ASTextInputLayoutImpl_TextInputLayoutCommandParamsBuilder *)tryGetLayoutWeight;
 
 // Disallowed inherited constructors, do not use.
 

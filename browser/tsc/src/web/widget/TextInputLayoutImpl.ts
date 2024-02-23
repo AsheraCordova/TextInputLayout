@@ -74,6 +74,9 @@ import { ScopedObject } from '../../app/ScopedObject';
 
 
 
+
+
+
 import {ViewGroupImpl_LayoutParams} from './ViewGroupImpl';
 
 // end - imports
@@ -82,6 +85,9 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	//start - body
 	static initialize() {
     }	
+	@Type(() => CommandAttr)
+	@Expose({ name: "hintTextFormat" })
+	hintTextFormat!:CommandAttr<string>| undefined;
 	@Type(() => CommandAttr)
 	@Expose({ name: "hint" })
 	hint!:CommandAttr<string>| undefined;
@@ -235,6 +241,7 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	protected abstract getThisPointer(): T;
 	reset() : T {	
 		super.reset();
+		this.hintTextFormat = undefined;
 		this.hint = undefined;
 		this.prefixText = undefined;
 		this.suffixText = undefined;
@@ -291,6 +298,20 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 		this.thisPointer = this.getThisPointer();
 	}
 	
+
+	public setHintTextFormat(value : string) : T {
+		this.resetIfRequired();
+		if (this.hintTextFormat == null || this.hintTextFormat == undefined) {
+			this.hintTextFormat = new CommandAttr<string>();
+		}
+		
+		this.hintTextFormat.setSetter(true);
+		this.hintTextFormat.setValue(value);
+		this.orderSet++;
+		this.hintTextFormat.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
 
 	public tryGetHint() : T {
 		this.resetIfRequired();
@@ -1216,6 +1237,92 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 }
 	
 //start - staticinit
+export abstract class TextInputLayoutImpl_LayoutParams<T> extends ViewGroupImpl_LayoutParams<T> {
+	@Type(() => CommandAttr)
+	@Expose({ name: "layout_gravity" })
+	layout_gravity!:CommandAttr<Gravity[]>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "layout_weight" })
+	layout_weight!:CommandAttr<number>| undefined;
+	@Exclude()
+	protected thisPointer: T;	
+	protected abstract getThisPointer(): T;
+	reset() : T {	
+		super.reset();
+		this.layout_gravity = undefined;
+		this.layout_weight = undefined;
+		return this.thisPointer;
+	}
+	constructor() {
+		super();
+		this.thisPointer = this.getThisPointer();
+	}
+	
+	public tryGetLayoutGravity() : T {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>()
+		}
+		
+		this.layout_gravity.setGetter(true);
+		this.orderGet++;
+		this.layout_gravity.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getLayoutGravity() : Gravity[] {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>();
+		}
+this.layout_gravity.setTransformer('gravity');		return this.layout_gravity.getCommandReturnValue();
+	}
+	public setLayoutGravity(...value : Gravity[]) : T {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>();
+		}
+		this.layout_gravity.setSetter(true);
+		this.layout_gravity.setValue(value);
+		this.orderSet++;
+		this.layout_gravity.setOrderSet(this.orderSet);
+this.layout_gravity.setTransformer('gravity');		return this.thisPointer;
+	}
+	public tryGetLayoutWeight() : T {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>()
+		}
+		
+		this.layout_weight.setGetter(true);
+		this.orderGet++;
+		this.layout_weight.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getLayoutWeight() : number {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>();
+		}
+		return this.layout_weight.getCommandReturnValue();
+	}
+	public setLayoutWeight(value : number) : T {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>();
+		}
+		this.layout_weight.setSetter(true);
+		this.layout_weight.setValue(value);
+		this.orderSet++;
+		this.layout_weight.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+}
+
+export class TextInputLayout_LayoutParams extends TextInputLayoutImpl_LayoutParams<TextInputLayout_LayoutParams> implements ILayoutParam {
+    getThisPointer(): TextInputLayout_LayoutParams {
+        return this;
+    }
+
+   	constructor() {
+		super();	
+	}
+}
 
 export class TextInputLayout extends TextInputLayoutImpl<TextInputLayout> implements IWidget{
     getThisPointer(): TextInputLayout {

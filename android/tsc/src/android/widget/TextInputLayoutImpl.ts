@@ -1,5 +1,9 @@
 // start - imports
 
+export const enum Orientation {
+horizontal = "horizontal",
+vertical = "vertical",
+}
 export const enum EndIconMode {
 custom = "custom",
 none = "none",
@@ -86,6 +90,16 @@ import { ScopedObject } from '../../app/ScopedObject';
 
 
 
+
+
+
+
+
+
+
+
+
+
 import {ViewGroupImpl_LayoutParams} from './ViewGroupImpl';
 
 // end - imports
@@ -94,6 +108,27 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	//start - body
 	static initialize() {
     }	
+	@Type(() => CommandAttr)
+	@Expose({ name: "baselineAligned" })
+	baselineAligned!:CommandAttr<boolean>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "baselineAlignedChildIndex" })
+	baselineAlignedChildIndex!:CommandAttr<number>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "divider" })
+	divider!:CommandAttr<string>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "gravity" })
+	gravity!:CommandAttr<Gravity[]>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "measureWithLargestChild" })
+	measureWithLargestChild!:CommandAttr<boolean>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "orientation" })
+	orientation!:CommandAttr<Orientation>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "weightSum" })
+	weightSum!:CommandAttr<number>| undefined;
 	@Type(() => CommandAttr)
 	@Expose({ name: "hint" })
 	hint!:CommandAttr<string>| undefined;
@@ -277,12 +312,22 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	@Type(() => CommandAttr)
 	@Expose({ name: "endIconActivated" })
 	endIconActivated!:CommandAttr<boolean>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "hintTextFormat" })
+	hintTextFormat!:CommandAttr<string>| undefined;
 
 	@Exclude()
 	protected thisPointer: T;	
 	protected abstract getThisPointer(): T;
 	reset() : T {	
 		super.reset();
+		this.baselineAligned = undefined;
+		this.baselineAlignedChildIndex = undefined;
+		this.divider = undefined;
+		this.gravity = undefined;
+		this.measureWithLargestChild = undefined;
+		this.orientation = undefined;
+		this.weightSum = undefined;
 		this.hint = undefined;
 		this.boxStrokeErrorColor = undefined;
 		this.boxStrokeWidth = undefined;
@@ -344,6 +389,7 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 		this.errorIconOnLongClick = undefined;
 		this.endIconVisible = undefined;
 		this.endIconActivated = undefined;
+		this.hintTextFormat = undefined;
 		return this.thisPointer;
 	}
 	constructor(id: string, path: string[], event:  string) {
@@ -351,6 +397,230 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 		this.thisPointer = this.getThisPointer();
 	}
 	
+
+	public tryGetBaselineAligned() : T {
+		this.resetIfRequired();
+		if (this.baselineAligned == null || this.baselineAligned == undefined) {
+			this.baselineAligned = new CommandAttr<boolean>()
+		}
+		
+		this.baselineAligned.setGetter(true);
+		this.orderGet++;
+		this.baselineAligned.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public isBaselineAligned() : boolean {
+		if (this.baselineAligned == null || this.baselineAligned == undefined) {
+			this.baselineAligned = new CommandAttr<boolean>();
+		}
+		return this.baselineAligned.getCommandReturnValue();
+	}
+	public setBaselineAligned(value : boolean) : T {
+		this.resetIfRequired();
+		if (this.baselineAligned == null || this.baselineAligned == undefined) {
+			this.baselineAligned = new CommandAttr<boolean>();
+		}
+		
+		this.baselineAligned.setSetter(true);
+		this.baselineAligned.setValue(value);
+		this.orderSet++;
+		this.baselineAligned.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
+
+	public tryGetBaselineAlignedChildIndex() : T {
+		this.resetIfRequired();
+		if (this.baselineAlignedChildIndex == null || this.baselineAlignedChildIndex == undefined) {
+			this.baselineAlignedChildIndex = new CommandAttr<number>()
+		}
+		
+		this.baselineAlignedChildIndex.setGetter(true);
+		this.orderGet++;
+		this.baselineAlignedChildIndex.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getBaselineAlignedChildIndex() : number {
+		if (this.baselineAlignedChildIndex == null || this.baselineAlignedChildIndex == undefined) {
+			this.baselineAlignedChildIndex = new CommandAttr<number>();
+		}
+		return this.baselineAlignedChildIndex.getCommandReturnValue();
+	}
+	public setBaselineAlignedChildIndex(value : number) : T {
+		this.resetIfRequired();
+		if (this.baselineAlignedChildIndex == null || this.baselineAlignedChildIndex == undefined) {
+			this.baselineAlignedChildIndex = new CommandAttr<number>();
+		}
+		
+		this.baselineAlignedChildIndex.setSetter(true);
+		this.baselineAlignedChildIndex.setValue(value);
+		this.orderSet++;
+		this.baselineAlignedChildIndex.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
+
+	public tryGetDivider() : T {
+		this.resetIfRequired();
+		if (this.divider == null || this.divider == undefined) {
+			this.divider = new CommandAttr<string>()
+		}
+		
+		this.divider.setGetter(true);
+		this.orderGet++;
+		this.divider.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getDivider() : string {
+		if (this.divider == null || this.divider == undefined) {
+			this.divider = new CommandAttr<string>();
+		}
+		return this.divider.getCommandReturnValue();
+	}
+	public setDivider(value : string) : T {
+		this.resetIfRequired();
+		if (this.divider == null || this.divider == undefined) {
+			this.divider = new CommandAttr<string>();
+		}
+		
+		this.divider.setSetter(true);
+		this.divider.setValue(value);
+		this.orderSet++;
+		this.divider.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
+
+	public tryGetGravity() : T {
+		this.resetIfRequired();
+		if (this.gravity == null || this.gravity == undefined) {
+			this.gravity = new CommandAttr<Gravity[]>()
+		}
+		
+		this.gravity.setGetter(true);
+		this.orderGet++;
+		this.gravity.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getGravity() : Gravity[] {
+		if (this.gravity == null || this.gravity == undefined) {
+			this.gravity = new CommandAttr<Gravity[]>();
+		}
+this.gravity.setTransformer('gravity');		return this.gravity.getCommandReturnValue();
+	}
+	public setGravity(...value : Gravity[]) : T {
+		this.resetIfRequired();
+		if (this.gravity == null || this.gravity == undefined) {
+			this.gravity = new CommandAttr<Gravity[]>();
+		}
+		
+		this.gravity.setSetter(true);
+		this.gravity.setValue(value);
+		this.orderSet++;
+		this.gravity.setOrderSet(this.orderSet);
+this.gravity.setTransformer('gravity');		return this.thisPointer;
+	}
+		
+
+	public tryGetMeasureWithLargestChild() : T {
+		this.resetIfRequired();
+		if (this.measureWithLargestChild == null || this.measureWithLargestChild == undefined) {
+			this.measureWithLargestChild = new CommandAttr<boolean>()
+		}
+		
+		this.measureWithLargestChild.setGetter(true);
+		this.orderGet++;
+		this.measureWithLargestChild.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public isMeasureWithLargestChild() : boolean {
+		if (this.measureWithLargestChild == null || this.measureWithLargestChild == undefined) {
+			this.measureWithLargestChild = new CommandAttr<boolean>();
+		}
+		return this.measureWithLargestChild.getCommandReturnValue();
+	}
+	public setMeasureWithLargestChild(value : boolean) : T {
+		this.resetIfRequired();
+		if (this.measureWithLargestChild == null || this.measureWithLargestChild == undefined) {
+			this.measureWithLargestChild = new CommandAttr<boolean>();
+		}
+		
+		this.measureWithLargestChild.setSetter(true);
+		this.measureWithLargestChild.setValue(value);
+		this.orderSet++;
+		this.measureWithLargestChild.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
+
+	public tryGetOrientation() : T {
+		this.resetIfRequired();
+		if (this.orientation == null || this.orientation == undefined) {
+			this.orientation = new CommandAttr<Orientation>()
+		}
+		
+		this.orientation.setGetter(true);
+		this.orderGet++;
+		this.orientation.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getOrientation() : Orientation {
+		if (this.orientation == null || this.orientation == undefined) {
+			this.orientation = new CommandAttr<Orientation>();
+		}
+		return this.orientation.getCommandReturnValue();
+	}
+	public setOrientation(value : Orientation) : T {
+		this.resetIfRequired();
+		if (this.orientation == null || this.orientation == undefined) {
+			this.orientation = new CommandAttr<Orientation>();
+		}
+		
+		this.orientation.setSetter(true);
+		this.orientation.setValue(value);
+		this.orderSet++;
+		this.orientation.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
+
+	public tryGetWeightSum() : T {
+		this.resetIfRequired();
+		if (this.weightSum == null || this.weightSum == undefined) {
+			this.weightSum = new CommandAttr<number>()
+		}
+		
+		this.weightSum.setGetter(true);
+		this.orderGet++;
+		this.weightSum.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getWeightSum() : number {
+		if (this.weightSum == null || this.weightSum == undefined) {
+			this.weightSum = new CommandAttr<number>();
+		}
+		return this.weightSum.getCommandReturnValue();
+	}
+	public setWeightSum(value : number) : T {
+		this.resetIfRequired();
+		if (this.weightSum == null || this.weightSum == undefined) {
+			this.weightSum = new CommandAttr<number>();
+		}
+		
+		this.weightSum.setSetter(true);
+		this.weightSum.setValue(value);
+		this.orderSet++;
+		this.weightSum.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
 
 	public tryGetHint() : T {
 		this.resetIfRequired();
@@ -1457,11 +1727,111 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 		return this.thisPointer;
 	}
 		
+
+	public setHintTextFormat(value : string) : T {
+		this.resetIfRequired();
+		if (this.hintTextFormat == null || this.hintTextFormat == undefined) {
+			this.hintTextFormat = new CommandAttr<string>();
+		}
+		
+		this.hintTextFormat.setSetter(true);
+		this.hintTextFormat.setValue(value);
+		this.orderSet++;
+		this.hintTextFormat.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+		
 	//end - body
 
 }
 	
 //start - staticinit
+export abstract class TextInputLayoutImpl_LayoutParams<T> extends ViewGroupImpl_LayoutParams<T> {
+	@Type(() => CommandAttr)
+	@Expose({ name: "layout_gravity" })
+	layout_gravity!:CommandAttr<Gravity[]>| undefined;
+	@Type(() => CommandAttr)
+	@Expose({ name: "layout_weight" })
+	layout_weight!:CommandAttr<number>| undefined;
+	@Exclude()
+	protected thisPointer: T;	
+	protected abstract getThisPointer(): T;
+	reset() : T {	
+		super.reset();
+		this.layout_gravity = undefined;
+		this.layout_weight = undefined;
+		return this.thisPointer;
+	}
+	constructor() {
+		super();
+		this.thisPointer = this.getThisPointer();
+	}
+	
+	public tryGetLayoutGravity() : T {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>()
+		}
+		
+		this.layout_gravity.setGetter(true);
+		this.orderGet++;
+		this.layout_gravity.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getLayoutGravity() : Gravity[] {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>();
+		}
+this.layout_gravity.setTransformer('gravity');		return this.layout_gravity.getCommandReturnValue();
+	}
+	public setLayoutGravity(...value : Gravity[]) : T {
+		if (this.layout_gravity == null || this.layout_gravity == undefined) {
+			this.layout_gravity = new CommandAttr<Gravity[]>();
+		}
+		this.layout_gravity.setSetter(true);
+		this.layout_gravity.setValue(value);
+		this.orderSet++;
+		this.layout_gravity.setOrderSet(this.orderSet);
+this.layout_gravity.setTransformer('gravity');		return this.thisPointer;
+	}
+	public tryGetLayoutWeight() : T {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>()
+		}
+		
+		this.layout_weight.setGetter(true);
+		this.orderGet++;
+		this.layout_weight.setOrderGet(this.orderGet);
+		return this.thisPointer;
+	}
+	
+	public getLayoutWeight() : number {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>();
+		}
+		return this.layout_weight.getCommandReturnValue();
+	}
+	public setLayoutWeight(value : number) : T {
+		if (this.layout_weight == null || this.layout_weight == undefined) {
+			this.layout_weight = new CommandAttr<number>();
+		}
+		this.layout_weight.setSetter(true);
+		this.layout_weight.setValue(value);
+		this.orderSet++;
+		this.layout_weight.setOrderSet(this.orderSet);
+		return this.thisPointer;
+	}
+}
+
+export class TextInputLayout_LayoutParams extends TextInputLayoutImpl_LayoutParams<TextInputLayout_LayoutParams> implements ILayoutParam {
+    getThisPointer(): TextInputLayout_LayoutParams {
+        return this;
+    }
+
+   	constructor() {
+		super();	
+	}
+}
 
 export class TextInputLayout extends TextInputLayoutImpl<TextInputLayout> implements IWidget{
     getThisPointer(): TextInputLayout {
