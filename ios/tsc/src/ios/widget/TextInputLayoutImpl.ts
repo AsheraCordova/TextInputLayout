@@ -24,6 +24,7 @@ import {MotionEvent} from '../../app/MotionEvent';
 import {DragEvent} from '../../app/DragEvent';
 import {KeyEvent} from '../../app/KeyEvent';
 import { ScopedObject } from '../../app/ScopedObject';
+import { Mixin, decorate } from 'ts-mixer';
 
 
 
@@ -85,158 +86,158 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	//start - body
 	static initialize() {
     }	
-	@Type(() => CommandAttr)
-	@Expose({ name: "hintTextFormat" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "hintTextFormat" }))
 	hintTextFormat!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "hint" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "hint" }))
 	hint!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "prefixText" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "prefixText" }))
 	prefixText!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "suffixText" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "suffixText" }))
 	suffixText!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "endIconDrawable" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "endIconDrawable" }))
 	endIconDrawable!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "startIconDrawable" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "startIconDrawable" }))
 	startIconDrawable!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterEnabled" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterEnabled" }))
 	counterEnabled!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterMaxLength" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterMaxLength" }))
 	counterMaxLength!:CommandAttr<number>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterOverflowTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterOverflowTextColor" }))
 	counterOverflowTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterTextColor" }))
 	counterTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "hintEnabled" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "hintEnabled" }))
 	hintEnabled!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "hintTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "hintTextColor" }))
 	hintTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "placeholderText" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "placeholderText" }))
 	placeholderText!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "placeholderTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "placeholderTextColor" }))
 	placeholderTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "prefixTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "prefixTextColor" }))
 	prefixTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "suffixTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "suffixTextColor" }))
 	suffixTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "endIconOnClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "endIconOnClick" }))
 	endIconOnClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "endIconOnLongClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "endIconOnLongClick" }))
 	endIconOnLongClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "startIconOnClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "startIconOnClick" }))
 	startIconOnClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "startIconOnLongClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "startIconOnLongClick" }))
 	startIconOnLongClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "startIconVisible" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "startIconVisible" }))
 	startIconVisible!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "endIconVisible" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "endIconVisible" }))
 	endIconVisible!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "helperTextEnabled" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "helperTextEnabled" }))
 	helperTextEnabled!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "helperTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "helperTextColor" }))
 	helperTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "helperText" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "helperText" }))
 	helperText!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "error" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "error" }))
 	error!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorEnabled" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorEnabled" }))
 	errorEnabled!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorTextColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorTextColor" }))
 	errorTextColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorIconDrawable" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorIconDrawable" }))
 	errorIconDrawable!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorIconOnClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorIconOnClick" }))
 	errorIconOnClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorIconOnLongClick" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorIconOnLongClick" }))
 	errorIconOnLongClick!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "endIconMode" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "endIconMode" }))
 	endIconMode!:CommandAttr<EndIconMode>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxBackgroundMode" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxBackgroundMode" }))
 	boxBackgroundMode!:CommandAttr<BoxBackgroundMode>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxBackgroundColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxBackgroundColor" }))
 	boxBackgroundColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxCornerRadiusTopStart" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxCornerRadiusTopStart" }))
 	boxCornerRadiusTopStart!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxCornerRadiusTopEnd" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxCornerRadiusTopEnd" }))
 	boxCornerRadiusTopEnd!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxCornerRadiusBottomEnd" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxCornerRadiusBottomEnd" }))
 	boxCornerRadiusBottomEnd!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxCornerRadiusBottomStart" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxCornerRadiusBottomStart" }))
 	boxCornerRadiusBottomStart!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxStrokeErrorColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxStrokeErrorColor" }))
 	boxStrokeErrorColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxStrokeWidth" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxStrokeWidth" }))
 	boxStrokeWidth!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxStrokeColor" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxStrokeColor" }))
 	boxStrokeColor!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "enabled" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "enabled" }))
 	enabled!:CommandAttr<boolean>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "hintTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "hintTextAppearance" }))
 	hintTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterOverflowTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterOverflowTextAppearance" }))
 	counterOverflowTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "counterTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "counterTextAppearance" }))
 	counterTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "errorTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "errorTextAppearance" }))
 	errorTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "helperTextTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "helperTextTextAppearance" }))
 	helperTextTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "prefixTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "prefixTextAppearance" }))
 	prefixTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "suffixTextAppearance" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "suffixTextAppearance" }))
 	suffixTextAppearance!:CommandAttr<string>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "boxPadding" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "boxPadding" }))
 	boxPadding!:CommandAttr<string>| undefined;
 
-	@Exclude()
+	@decorate(Exclude())
 	protected thisPointer: T;	
 	protected abstract getThisPointer(): T;
 	reset() : T {	
@@ -1238,13 +1239,13 @@ export abstract class TextInputLayoutImpl<T> extends ViewGroupImpl<T>{
 	
 //start - staticinit
 export abstract class TextInputLayoutImpl_LayoutParams<T> extends ViewGroupImpl_LayoutParams<T> {
-	@Type(() => CommandAttr)
-	@Expose({ name: "layout_gravity" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "layout_gravity" }))
 	layout_gravity!:CommandAttr<Gravity[]>| undefined;
-	@Type(() => CommandAttr)
-	@Expose({ name: "layout_weight" })
+	@decorate(Type(() => CommandAttr))
+	@decorate(Expose({ name: "layout_weight" }))
 	layout_weight!:CommandAttr<number>| undefined;
-	@Exclude()
+	@decorate(Exclude())
 	protected thisPointer: T;	
 	protected abstract getThisPointer(): T;
 	reset() : T {	
