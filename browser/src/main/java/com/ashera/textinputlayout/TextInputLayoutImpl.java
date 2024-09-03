@@ -296,6 +296,7 @@ return layoutParams.weight;			}
 	public class TextInputLayoutExt extends r.android.widget.LinearLayout implements ILifeCycleDecorator, com.ashera.widget.IMaxDimension{
 		private MeasureEvent measureFinished = new MeasureEvent();
 		private OnLayoutEvent onLayoutEvent = new OnLayoutEvent();
+		private List<IWidget> overlays;
 		public IWidget getWidget() {
 			return TextInputLayoutImpl.this;
 		}
@@ -347,9 +348,12 @@ return layoutParams.weight;			}
 		protected void onLayout(boolean changed, int l, int t, int r, int b) {
 			super.onLayout(changed, l, t, r, b);
 			ViewImpl.setDrawableBounds(TextInputLayoutImpl.this, l, t, r, b);
+			if (!isOverlay()) {
 			ViewImpl.nativeMakeFrame(asNativeWidget(), l, t, r, b);
+			}
 			replayBufferedEvents();
 	        ViewImpl.redrawDrawables(TextInputLayoutImpl.this);
+	        overlays = ViewImpl.drawOverlay(TextInputLayoutImpl.this, overlays);
 			
 			IWidgetLifeCycleListener listener = (IWidgetLifeCycleListener) getListener();
 			if (listener != null) {
@@ -479,7 +483,7 @@ return layoutParams.weight;			}
 				setState4(value);
 				return;
 			}
-			TextInputLayoutImpl.this.setAttribute(name, value, true);
+			TextInputLayoutImpl.this.setAttribute(name, value, !(value instanceof String));
 		}
         @Override
         public void setVisibility(int visibility) {
