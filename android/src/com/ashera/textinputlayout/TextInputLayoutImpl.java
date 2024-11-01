@@ -233,7 +233,7 @@ Context context = (Context) fragment.getRootActivity();
 	}
 
 	@Override
-	public boolean remove(IWidget w) {		
+	public boolean remove(IWidget w) {
 		boolean remove = super.remove(w);
 		textInputLayout.removeView((View) w.asWidget());
 		return remove;
@@ -492,7 +492,9 @@ return layoutParams.weight;			}
         @Override
         public void drawableStateChanged() {
         	super.drawableStateChanged();
-        	ViewImpl.drawableStateChanged(TextInputLayoutImpl.this);
+        	if (!isWidgetDisposed()) {
+        		ViewImpl.drawableStateChanged(TextInputLayoutImpl.this);
+        	}
         }
         
     	public void setState0(float value) {
@@ -630,6 +632,7 @@ return layoutParams.weight;			}
         	ViewImpl.stateNo(TextInputLayoutImpl.this);
         }
      
+	
 	}
 	@Override
 	public Class getViewClass() {
