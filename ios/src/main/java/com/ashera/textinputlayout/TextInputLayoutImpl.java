@@ -1863,6 +1863,7 @@ public java.util.Map<String, Object> getOnClickEventObj(View v) {
     obj.put("eventType", "click");
     obj.put("fragmentId", w.getFragment().getFragmentId());
     obj.put("actionUrl", w.getFragment().getActionUrl());
+    obj.put("namespace", w.getFragment().getNamespace());
     
     if (w.getComponentId() != null) {
     	obj.put("componentId", w.getComponentId());
@@ -1938,6 +1939,7 @@ public java.util.Map<String, Object> getOnLongClickEventObj(View v) {
     obj.put("eventType", "longclick");
     obj.put("fragmentId", w.getFragment().getFragmentId());
     obj.put("actionUrl", w.getFragment().getActionUrl());
+    obj.put("namespace", w.getFragment().getNamespace());
     
     if (w.getComponentId() != null) {
     	obj.put("componentId", w.getComponentId());
