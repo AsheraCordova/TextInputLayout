@@ -3,6 +3,11 @@
 //  source: D:\Java\git\core-ios-widgets\IOSTextInputLayoutPlugin\src\main\java\com\ashera\textinputlayout\TextInputLayoutImpl.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "AbstractEnumToIntConverter.h"
 #include "AutoCompleteTextView.h"
 #include "BaseHasWidgets.h"
@@ -44,6 +49,7 @@
 #include "WidgetFactory.h"
 #include "java/lang/Boolean.h"
 #include "java/lang/CharSequence.h"
+#include "java/lang/Character.h"
 #include "java/lang/Float.h"
 #include "java/lang/Integer.h"
 #include "java/lang/Runnable.h"
@@ -57,9 +63,12 @@
 #include "ASUIView.h"
 #include "HasLifeCycleDecorators.h"
 
-@protocol JavaLangCharSequence;
-@protocol JavaUtilList;
-@protocol JavaUtilMap;
+
+@class NSString;
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 #pragma clang diagnostic ignored "-Wprotocol"
@@ -76,30 +85,30 @@
   id<ASIWidget> startIcon_;
   id<ASIWidget> counterView_;
   id<ASIWidget> hintView_;
-  jboolean counterEnabled_;
+  bool counterEnabled_;
   id<ASIWidget> editText_;
-  jint maxLength_;
+  int32_t maxLength_;
   NSString *placeholderText_;
   id placeholderTextColor_;
   id counterTextColor_;
   id counterOverflowTextColor_;
-  jboolean hintEnabled_;
-  jboolean helperTextEnabled_;
+  bool hintEnabled_;
+  bool helperTextEnabled_;
   id<ASIWidget> helperTextView_;
-  jboolean errorEnabled_;
+  bool errorEnabled_;
   id<ASIWidget> errorTextView_;
   id<ASIWidget> errorIcon_;
   id errorIconDrawable_;
-  jint endIconMode_;
+  int32_t endIconMode_;
   id endIconDrawable_;
-  jint boxBackgroundMode_;
+  int32_t boxBackgroundMode_;
   id<ASIWidget> innerLayout_;
   id boxStrokeErrorColor_;
-  jboolean enabled_;
+  bool enabled_;
   id boxStrokeColor_;
   id counterOverflowTextAppearance_;
   id counterTextAppearance_;
-  jboolean popUpShowing_;
+  bool popUpShowing_;
 }
 
 - (void)setWidgetOnNativeClass;
@@ -112,10 +121,10 @@
 
 - (void)setHintTextFormatWithId:(id)objValue;
 
-- (jboolean)preSetChildAttributeWithASIWidget:(id<ASIWidget>)w
-                        withASWidgetAttribute:(ASWidgetAttribute *)key
-                                 withNSString:(NSString *)strValue
-                                       withId:(id)objValue;
+- (bool)preSetChildAttributeWithASIWidget:(id<ASIWidget>)w
+                    withASWidgetAttribute:(ASWidgetAttribute *)key
+                             withNSString:(NSString *)strValue
+                                   withId:(id)objValue;
 
 - (void)setSuffixTextWithId:(id)objValue;
 
@@ -137,7 +146,7 @@
 
 - (id)getCounterMaxLength;
 
-- (jboolean)updateViewsWithJavaLangCharSequence:(id<JavaLangCharSequence>)s;
+- (bool)updateViewsWithJavaLangCharSequence:(id<JavaLangCharSequence>)s;
 
 - (void)postSetAttributeWithASWidgetAttribute:(ASWidgetAttribute *)key
                                  withNSString:(NSString *)strValue
@@ -236,7 +245,7 @@
 
 - (void)setBoxStrokeColorStateListWithId:(id)objValue;
 
-- (void)updateIconStateWithBoolean:(jboolean)hide;
+- (void)updateIconStateWithBoolean:(bool)hide;
 
 - (void)setHintTextAppearanceWithId:(id)objValue;
 
@@ -258,7 +267,7 @@
 
 - (void)syncBackground;
 
-- (jboolean)isPaddingFixNeeded;
+- (bool)isPaddingFixNeeded;
 
 @end
 
@@ -298,7 +307,7 @@ __attribute__((unused)) static ADLinearLayout_LayoutParams *ASTextInputLayoutImp
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_setHintTextFormatWithId_(ASTextInputLayoutImpl *self, id objValue);
 
-__attribute__((unused)) static jboolean ASTextInputLayoutImpl_preSetChildAttributeWithASIWidget_withASWidgetAttribute_withNSString_withId_(ASTextInputLayoutImpl *self, id<ASIWidget> w, ASWidgetAttribute *key, NSString *strValue, id objValue);
+__attribute__((unused)) static bool ASTextInputLayoutImpl_preSetChildAttributeWithASIWidget_withASWidgetAttribute_withNSString_withId_(ASTextInputLayoutImpl *self, id<ASIWidget> w, ASWidgetAttribute *key, NSString *strValue, id objValue);
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_setSuffixTextWithId_(ASTextInputLayoutImpl *self, id objValue);
 
@@ -320,7 +329,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_setCounterMaxLengthWit
 
 __attribute__((unused)) static id ASTextInputLayoutImpl_getCounterMaxLength(ASTextInputLayoutImpl *self);
 
-__attribute__((unused)) static jboolean ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputLayoutImpl *self, id<JavaLangCharSequence> s);
+__attribute__((unused)) static bool ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputLayoutImpl *self, id<JavaLangCharSequence> s);
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_postSetAttributeWithASWidgetAttribute_withNSString_withId_withASILifeCycleDecorator_(ASTextInputLayoutImpl *self, ASWidgetAttribute *key, NSString *strValue, id objValue, id<ASILifeCycleDecorator> decorator);
 
@@ -416,7 +425,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_setEnabledWithId_(ASTe
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_setBoxStrokeColorStateListWithId_(ASTextInputLayoutImpl *self, id objValue);
 
-__attribute__((unused)) static void ASTextInputLayoutImpl_updateIconStateWithBoolean_(ASTextInputLayoutImpl *self, jboolean hide);
+__attribute__((unused)) static void ASTextInputLayoutImpl_updateIconStateWithBoolean_(ASTextInputLayoutImpl *self, bool hide);
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_setHintTextAppearanceWithId_(ASTextInputLayoutImpl *self, id objValue);
 
@@ -438,7 +447,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_setBoxPaddingWithId_(A
 
 __attribute__((unused)) static void ASTextInputLayoutImpl_syncBackground(ASTextInputLayoutImpl *self);
 
-__attribute__((unused)) static jboolean ASTextInputLayoutImpl_isPaddingFixNeeded(ASTextInputLayoutImpl *self);
+__attribute__((unused)) static bool ASTextInputLayoutImpl_isPaddingFixNeeded(ASTextInputLayoutImpl *self);
 
 @interface ASTextInputLayoutImpl_EndIconMode () {
  @public
@@ -460,12 +469,12 @@ J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl_BoxBackgroundMode, mapping_, id<JavaUt
 
 @interface ASTextInputLayoutImpl_TextInputLayoutExt () {
  @public
-  __unsafe_unretained ASTextInputLayoutImpl *this$0_;
+  WEAK_ ASTextInputLayoutImpl *this$0_;
   ASMeasureEvent *measureFinished_;
   ASOnLayoutEvent *onLayoutEvent_;
   id<JavaUtilList> overlays_;
-  jint mMaxWidth_;
-  jint mMaxHeight_;
+  int32_t mMaxWidth_;
+  int32_t mMaxHeight_;
   id<JavaUtilMap> templates_;
 }
 
@@ -486,14 +495,14 @@ J2OBJC_FIELD_SETTER(ASTextInputLayoutImpl_TextInputLayoutExt, templates_, id<Jav
                             withADTextWatcher:(id<ADTextWatcher>)capture$0;
 
 - (void)beforeTextChangedWithJavaLangCharSequence:(id<JavaLangCharSequence>)s
-                                          withInt:(jint)start
-                                          withInt:(jint)count
-                                          withInt:(jint)after;
+                                          withInt:(int32_t)start
+                                          withInt:(int32_t)count
+                                          withInt:(int32_t)after;
 
 - (void)onTextChangedWithJavaLangCharSequence:(id<JavaLangCharSequence>)s
-                                      withInt:(jint)start
-                                      withInt:(jint)before
-                                      withInt:(jint)count;
+                                      withInt:(int32_t)start
+                                      withInt:(int32_t)before
+                                      withInt:(int32_t)count;
 
 - (void)afterTextChangedWithADEditable:(id<ADEditable>)s;
 
@@ -506,6 +515,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_1_initWithASTextInputL
 __attribute__((unused)) static ASTextInputLayoutImpl_1 *new_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayoutImpl_withADTextWatcher_(ASTextInputLayoutImpl *outer$, id<ADTextWatcher> capture$0);
+
 
 @interface ASTextInputLayoutImpl_2 : ADDataSetObserver {
  @public
@@ -526,6 +536,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_2 *new_ASTextInputLayoutImp
 
 __attribute__((unused)) static ASTextInputLayoutImpl_2 *create_ASTextInputLayoutImpl_2_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
 
+
 @interface ASTextInputLayoutImpl_3 : NSObject < ADAutoCompleteTextView_OnDismissListener > {
  @public
   ASTextInputLayoutImpl *this$0_;
@@ -545,6 +556,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_3 *new_ASTextInputLayoutImp
 
 __attribute__((unused)) static ASTextInputLayoutImpl_3 *create_ASTextInputLayoutImpl_3_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
 
+
 @interface ASTextInputLayoutImpl_4 : NSObject < ADView_OnFocusChangeListener > {
  @public
   ASTextInputLayoutImpl *this$0_;
@@ -553,7 +565,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_3 *create_ASTextInputLayout
 - (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$;
 
 - (void)onFocusChangeWithADView:(ADView *)v
-                    withBoolean:(jboolean)hasFocus;
+                    withBoolean:(bool)hasFocus;
 
 @end
 
@@ -565,10 +577,11 @@ __attribute__((unused)) static ASTextInputLayoutImpl_4 *new_ASTextInputLayoutImp
 
 __attribute__((unused)) static ASTextInputLayoutImpl_4 *create_ASTextInputLayoutImpl_4_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
 
+
 @interface ASTextInputLayoutImpl_5 : NSObject < ADView_OnClickListener > {
  @public
   ASTextInputLayoutImpl *this$0_;
-  jboolean password_;
+  bool password_;
 }
 
 - (instancetype)initWithASTextInputLayoutImpl:(ASTextInputLayoutImpl *)outer$;
@@ -584,6 +597,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_5_initWithASTextInputL
 __attribute__((unused)) static ASTextInputLayoutImpl_5 *new_ASTextInputLayoutImpl_5_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static ASTextInputLayoutImpl_5 *create_ASTextInputLayoutImpl_5_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
+
 
 @interface ASTextInputLayoutImpl_6 : NSObject < ADView_OnClickListener > {
  @public
@@ -604,6 +618,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_6 *new_ASTextInputLayoutImp
 
 __attribute__((unused)) static ASTextInputLayoutImpl_6 *create_ASTextInputLayoutImpl_6_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
 
+
 @interface ASTextInputLayoutImpl_7 : NSObject < ADView_OnClickListener > {
  @public
   ASTextInputLayoutImpl *this$0_;
@@ -622,6 +637,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_7_initWithASTextInputL
 __attribute__((unused)) static ASTextInputLayoutImpl_7 *new_ASTextInputLayoutImpl_7_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static ASTextInputLayoutImpl_7 *create_ASTextInputLayoutImpl_7_initWithASTextInputLayoutImpl_(ASTextInputLayoutImpl *outer$);
+
 
 @interface ASTextInputLayoutImpl_OnClickListener : NSObject < ADView_OnClickListener, ASIListener > {
  @public
@@ -667,6 +683,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_OnClickListener *create_AST
 
 J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_OnClickListener)
 
+
 @interface ASTextInputLayoutImpl_OnLongClickListener : NSObject < ADView_OnLongClickListener, ASIListener > {
  @public
   id<ASIWidget> w_;
@@ -684,7 +701,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_OnClickListener)
                      withNSString:(NSString *)strValue
                      withNSString:(NSString *)action;
 
-- (jboolean)onLongClickWithADView:(ADView *)v;
+- (bool)onLongClickWithADView:(ADView *)v;
 
 - (id<JavaUtilMap>)getOnLongClickEventObjWithADView:(ADView *)v;
 
@@ -711,6 +728,7 @@ __attribute__((unused)) static ASTextInputLayoutImpl_OnLongClickListener *create
 
 J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutImpl_OnLongClickListener)
 
+
 @interface ASTextInputLayoutImpl_$Lambda$1 : NSObject < JavaLangRunnable > {
  @public
   id<ASIWidget> val$widget_;
@@ -727,6 +745,7 @@ __attribute__((unused)) static void ASTextInputLayoutImpl_$Lambda$1_initWithASIW
 __attribute__((unused)) static ASTextInputLayoutImpl_$Lambda$1 *new_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static ASTextInputLayoutImpl_$Lambda$1 *create_ASTextInputLayoutImpl_$Lambda$1_initWithASIWidget_(id<ASIWidget> capture$0);
+
 
 NSString *ASTextInputLayoutImpl_LOCAL_NAME = @"com.google.android.material.textfield.TextInputLayout";
 NSString *ASTextInputLayoutImpl_GROUP_NAME = @"com.google.android.material.textfield.TextInputLayout";
@@ -832,16 +851,16 @@ J2OBJC_IGNORE_DESIGNATED_END
   return linearLayout_;
 }
 
-- (jboolean)removeWithASIWidget:(id<ASIWidget>)w {
-  jboolean remove = [super removeWithASIWidget:w];
+- (bool)removeWithASIWidget:(id<ASIWidget>)w {
+  bool remove = [super removeWithASIWidget:w];
   [((ADLinearLayout *) nil_chk(linearLayout_)) removeViewWithADView:(ADView *) cast_chk([((id<ASIWidget>) nil_chk(w)) asWidget], [ADView class])];
   ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(self, w);
   return remove;
 }
 
-- (jboolean)removeWithInt:(jint)index {
+- (bool)removeWithInt:(int32_t)index {
   id<ASIWidget> widget = [((id<JavaUtilList>) nil_chk(widgets_)) getWithInt:index];
-  jboolean remove = [super removeWithInt:index];
+  bool remove = [super removeWithInt:index];
   if (index + 1 <= [((ADLinearLayout *) nil_chk(linearLayout_)) getChildCount]) {
     [((ADLinearLayout *) nil_chk(linearLayout_)) removeViewAtWithInt:index];
     ASTextInputLayoutImpl_nativeRemoveViewWithASIWidget_(self, widget);
@@ -854,7 +873,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)addWithASIWidget:(id<ASIWidget>)w
-                 withInt:(jint)index {
+                 withInt:(int32_t)index {
   if (index != -2) {
     ADView *view = (ADView *) cast_chk([((id<ASIWidget>) nil_chk(w)) asWidget], [ADView class]);
     ASTextInputLayoutImpl_createLayoutParamsWithADView_(self, view);
@@ -1300,7 +1319,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return uiView_;
 }
 
-- (jboolean)checkIosVersionWithNSString:(NSString *)v {
+- (bool)checkIosVersionWithNSString:(NSString *)v {
   return ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending);
 }
 
@@ -1317,7 +1336,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)resetError {
-  jint validationErrorDisplayType = [self getValidationErrorDisplayType];
+  int32_t validationErrorDisplayType = [self getValidationErrorDisplayType];
   if ((validationErrorDisplayType & ASFormElement_ERROR_DISPLAY_TYPE_POPUP) != 0) {
     ASTextInputLayoutImpl_setErrorWithId_(self, nil);
   }
@@ -1330,7 +1349,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)showErrorWithNSString:(NSString *)message {
-  jint validationErrorDisplayType = [self getValidationErrorDisplayType];
+  int32_t validationErrorDisplayType = [self getValidationErrorDisplayType];
   if ((validationErrorDisplayType & ASFormElement_ERROR_DISPLAY_TYPE_POPUP) != 0) {
     ASTextInputLayoutImpl_setErrorWithId_(self, message);
   }
@@ -1346,10 +1365,10 @@ J2OBJC_IGNORE_DESIGNATED_END
   ASTextInputLayoutImpl_setHintTextFormatWithId_(self, objValue);
 }
 
-- (jboolean)preSetChildAttributeWithASIWidget:(id<ASIWidget>)w
-                        withASWidgetAttribute:(ASWidgetAttribute *)key
-                                 withNSString:(NSString *)strValue
-                                       withId:(id)objValue {
+- (bool)preSetChildAttributeWithASIWidget:(id<ASIWidget>)w
+                    withASWidgetAttribute:(ASWidgetAttribute *)key
+                             withNSString:(NSString *)strValue
+                                   withId:(id)objValue {
   return ASTextInputLayoutImpl_preSetChildAttributeWithASIWidget_withASWidgetAttribute_withNSString_withId_(self, w, key, strValue, objValue);
 }
 
@@ -1389,7 +1408,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)setEndIconInternalWithId:(id)objValue
-                     withBoolean:(jboolean)skipConvert {
+                     withBoolean:(bool)skipConvert {
   [((id<ASIWidget>) nil_chk(endIcon_)) setVisibleWithBoolean:true];
   [((id<ASIWidget>) nil_chk(endIcon_)) setAttributeWithNSString:@"src" withId:objValue withBoolean:skipConvert];
   [((id<ASIWidget>) nil_chk(endIcon_)) requestLayout];
@@ -1419,7 +1438,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return ASTextInputLayoutImpl_getCounterMaxLength(self);
 }
 
-- (jboolean)updateViewsWithJavaLangCharSequence:(id<JavaLangCharSequence>)s {
+- (bool)updateViewsWithJavaLangCharSequence:(id<JavaLangCharSequence>)s {
   return ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(self, s);
 }
 
@@ -1614,7 +1633,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   ASTextInputLayoutImpl_setBoxStrokeColorStateListWithId_(self, objValue);
 }
 
-- (void)updateIconStateWithBoolean:(jboolean)hide {
+- (void)updateIconStateWithBoolean:(bool)hide {
   ASTextInputLayoutImpl_updateIconStateWithBoolean_(self, hide);
 }
 
@@ -1657,7 +1676,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return (NSString *) cast_chk([editText_ getAttributeWithNSString:@"text" withBoolean:true], [NSString class]);
 }
 
-- (jboolean)isViewVisible {
+- (bool)isViewVisible {
   return [((ADLinearLayout *) nil_chk(linearLayout_)) getVisibility] == ADView_VISIBLE;
 }
 
@@ -1679,7 +1698,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   }
 }
 
-- (void)setVisibleWithBoolean:(jboolean)b {
+- (void)setVisibleWithBoolean:(bool)b {
   [((ADView *) nil_chk(((ADView *) cast_chk([self asWidget], [ADView class])))) setVisibilityWithInt:b ? ADView_VISIBLE : ADView_GONE];
 }
 
@@ -1687,7 +1706,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   ASTextInputLayoutImpl_syncBackground(self);
 }
 
-- (jboolean)isPaddingFixNeeded {
+- (bool)isPaddingFixNeeded {
   return ASTextInputLayoutImpl_isPaddingFixNeeded(self);
 }
 
@@ -2039,7 +2058,7 @@ void ASTextInputLayoutImpl_setHintTextFormatWithId_(ASTextInputLayoutImpl *self,
   [self applyAttributeCommandWithNSString:@"hint" withNSString:ASCommonConverters_command_textformatter withNSStringArray:[IOSObjectArray newArrayWithObjects:(id[]){ @"hintTextFormat" } count:1 type:NSString_class_()] withBoolean:true withNSObjectArray:[IOSObjectArray newArrayWithObjects:(id[]){ (NSString *) cast_chk(objValue, [NSString class]) } count:1 type:NSObject_class_()]];
 }
 
-jboolean ASTextInputLayoutImpl_preSetChildAttributeWithASIWidget_withASWidgetAttribute_withNSString_withId_(ASTextInputLayoutImpl *self, id<ASIWidget> w, ASWidgetAttribute *key, NSString *strValue, id objValue) {
+bool ASTextInputLayoutImpl_preSetChildAttributeWithASIWidget_withASWidgetAttribute_withNSString_withId_(ASTextInputLayoutImpl *self, id<ASIWidget> w, ASWidgetAttribute *key, NSString *strValue, id objValue) {
   return false;
 }
 
@@ -2107,8 +2126,8 @@ id ASTextInputLayoutImpl_getCounterMaxLength(ASTextInputLayoutImpl *self) {
   return JavaLangInteger_valueOfWithInt_(self->maxLength_);
 }
 
-jboolean ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputLayoutImpl *self, id<JavaLangCharSequence> s) {
-  jboolean remeasure = false;
+bool ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputLayoutImpl *self, id<JavaLangCharSequence> s) {
+  bool remeasure = false;
   if (self->counterEnabled_) {
     JavaLangStringBuilder *b = new_JavaLangStringBuilder_initWithNSString_(JreStrcat("I", [((id<JavaLangCharSequence>) nil_chk(s)) java_length]));
     if (self->maxLength_ != -1) {
@@ -2160,9 +2179,9 @@ jboolean ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputL
     if (self->hintEnabled_) {
       ADView *hintAView = (ADView *) cast_chk([((id<ASIWidget>) nil_chk(self->hintView_)) asWidget], [ADView class]);
       [((ADView *) nil_chk(hintAView)) measureWithInt:0 withInt:0];
-      jint hintMeasuredHeight = [hintAView getMeasuredHeight];
-      jint hintMeasuredWidth = [hintAView getMeasuredWidth];
-      jint editTextPaddingTop = [((ADView *) nil_chk(((ADView *) cast_chk([((id<ASIWidget>) nil_chk(self->editText_)) asWidget], [ADView class])))) getPaddingTop];
+      int32_t hintMeasuredHeight = [hintAView getMeasuredHeight];
+      int32_t hintMeasuredWidth = [hintAView getMeasuredWidth];
+      int32_t editTextPaddingTop = [((ADView *) nil_chk(((ADView *) cast_chk([((id<ASIWidget>) nil_chk(self->editText_)) asWidget], [ADView class])))) getPaddingTop];
       if (self->boxBackgroundMode_ != 2) {
         if (hintMeasuredWidth > 0 && hintMeasuredHeight > editTextPaddingTop) {
           hintMeasuredHeight = editTextPaddingTop;
@@ -2189,7 +2208,7 @@ jboolean ASTextInputLayoutImpl_updateViewsWithJavaLangCharSequence_(ASTextInputL
   }
   if (self->boxBackgroundMode_ == 2) {
     NSString *errorText = (NSString *) cast_chk([((id<ASIWidget>) nil_chk(self->errorTextView_)) getAttributeWithNSString:@"text" withBoolean:true], [NSString class]);
-    if (self->errorEnabled_ && errorText != nil && ![errorText java_isEmpty]) {
+    if (self->errorEnabled_ && errorText != nil && ![errorText isEmpty]) {
       [((id<ASIWidget>) nil_chk(self->innerLayout_)) setAttributeWithNSString:@"borderColor" withId:self->boxStrokeErrorColor_ withBoolean:true];
     }
     else {
@@ -2330,7 +2349,7 @@ void ASTextInputLayoutImpl_setMyErrorWithId_(ASTextInputLayoutImpl *self, id obj
   [((id<ASIWidget>) nil_chk(self->errorTextView_)) requestLayout];
   if (self->errorIconDrawable_ != nil) {
     NSString *text = (NSString *) cast_chk(objValue, [NSString class]);
-    [((id<ASIWidget>) nil_chk(self->errorIcon_)) setVisibleWithBoolean:text != nil && ![text java_isEmpty]];
+    [((id<ASIWidget>) nil_chk(self->errorIcon_)) setVisibleWithBoolean:text != nil && ![text isEmpty]];
     [((id<ASIWidget>) nil_chk(self->errorIcon_)) requestLayout];
   }
 }
@@ -2347,7 +2366,7 @@ void ASTextInputLayoutImpl_setErrorIconDrawableWithId_(ASTextInputLayoutImpl *se
   self->errorIconDrawable_ = objValue;
   [((id<ASIWidget>) nil_chk(self->errorIcon_)) setAttributeWithNSString:@"src" withId:objValue withBoolean:true];
   NSString *text = (NSString *) cast_chk([((id<ASIWidget>) nil_chk(self->errorTextView_)) getAttributeWithNSString:@"text" withBoolean:true], [NSString class]);
-  [((id<ASIWidget>) nil_chk(self->errorIcon_)) setVisibleWithBoolean:text != nil && ![text java_isEmpty]];
+  [((id<ASIWidget>) nil_chk(self->errorIcon_)) setVisibleWithBoolean:text != nil && ![text isEmpty]];
   [((id<ASIWidget>) nil_chk(self->errorIcon_)) requestLayout];
 }
 
@@ -2470,7 +2489,7 @@ void ASTextInputLayoutImpl_setBoxStrokeColorStateListWithId_(ASTextInputLayoutIm
   self->boxStrokeColor_ = objValue;
 }
 
-void ASTextInputLayoutImpl_updateIconStateWithBoolean_(ASTextInputLayoutImpl *self, jboolean hide) {
+void ASTextInputLayoutImpl_updateIconStateWithBoolean_(ASTextInputLayoutImpl *self, bool hide) {
   self->popUpShowing_ = !hide;
   if (self->endIconMode_ == 3) {
     if (!hide) {
@@ -2527,11 +2546,13 @@ void ASTextInputLayoutImpl_setBoxPaddingWithId_(ASTextInputLayoutImpl *self, id 
 void ASTextInputLayoutImpl_syncBackground(ASTextInputLayoutImpl *self) {
 }
 
-jboolean ASTextInputLayoutImpl_isPaddingFixNeeded(ASTextInputLayoutImpl *self) {
+bool ASTextInputLayoutImpl_isPaddingFixNeeded(ASTextInputLayoutImpl *self) {
   return false;
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl)
+
+J2OBJC_NAME_MAPPING(ASTextInputLayoutImpl, "com.ashera.textinputlayout", "AS")
 
 @implementation ASTextInputLayoutImpl_EndIconMode
 
@@ -2578,10 +2599,10 @@ void ASTextInputLayoutImpl_EndIconMode_init(ASTextInputLayoutImpl_EndIconMode *s
   self->mapping_ = new_JavaUtilHashMap_init();
   {
     (void) [self->mapping_ putWithId:@"custom" withId:JavaLangInteger_valueOfWithInt_(-1)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"none" withId:JavaLangInteger_valueOfWithInt_((jint) 0x0)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"password_toggle" withId:JavaLangInteger_valueOfWithInt_((jint) 0x1)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"clear_text" withId:JavaLangInteger_valueOfWithInt_((jint) 0x2)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"dropdown_menu" withId:JavaLangInteger_valueOfWithInt_((jint) 0x3)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"none" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x0)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"password_toggle" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x1)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"clear_text" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x2)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"dropdown_menu" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x3)];
   }
 }
 
@@ -2639,9 +2660,9 @@ void ASTextInputLayoutImpl_BoxBackgroundMode_init(ASTextInputLayoutImpl_BoxBackg
   ASAbstractEnumToIntConverter_init(self);
   self->mapping_ = new_JavaUtilHashMap_init();
   {
-    (void) [self->mapping_ putWithId:@"none" withId:JavaLangInteger_valueOfWithInt_((jint) 0x0)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"filled" withId:JavaLangInteger_valueOfWithInt_((jint) 0x1)];
-    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"outline" withId:JavaLangInteger_valueOfWithInt_((jint) 0x2)];
+    (void) [self->mapping_ putWithId:@"none" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x0)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"filled" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x1)];
+    (void) [((id<JavaUtilMap>) nil_chk(self->mapping_)) putWithId:@"outline" withId:JavaLangInteger_valueOfWithInt_((int32_t) 0x2)];
   }
 }
 
@@ -2661,19 +2682,19 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   return this$0_;
 }
 
-- (void)setMaxWidthWithInt:(jint)width {
+- (void)setMaxWidthWithInt:(int32_t)width {
   mMaxWidth_ = width;
 }
 
-- (void)setMaxHeightWithInt:(jint)height {
+- (void)setMaxHeightWithInt:(int32_t)height {
   mMaxHeight_ = height;
 }
 
-- (jint)getMaxWidth {
+- (int32_t)getMaxWidth {
   return mMaxWidth_;
 }
 
-- (jint)getMaxHeight {
+- (int32_t)getMaxHeight {
   return mMaxHeight_;
 }
 
@@ -2682,8 +2703,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   return self;
 }
 
-- (void)onMeasureWithInt:(jint)widthMeasureSpec
-                 withInt:(jint)heightMeasureSpec {
+- (void)onMeasureWithInt:(int32_t)widthMeasureSpec
+                 withInt:(int32_t)heightMeasureSpec {
   if (mMaxWidth_ > 0) {
     widthMeasureSpec = ADView_MeasureSpec_makeMeasureSpecWithInt_withInt_(mMaxWidth_, ADView_MeasureSpec_AT_MOST);
   }
@@ -2699,11 +2720,11 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   }
 }
 
-- (void)onLayoutWithBoolean:(jboolean)changed
-                    withInt:(jint)l
-                    withInt:(jint)t
-                    withInt:(jint)r
-                    withInt:(jint)b {
+- (void)onLayoutWithBoolean:(bool)changed
+                    withInt:(int32_t)l
+                    withInt:(int32_t)t
+                    withInt:(int32_t)r
+                    withInt:(int32_t)b {
   [super onLayoutWithBoolean:changed withInt:l withInt:t withInt:r withInt:b];
   ASViewImpl_setDrawableBoundsWithASIWidget_withInt_withInt_withInt_withInt_(this$0_, l, t, r, b);
   if (![self isOverlay]) {
@@ -2730,8 +2751,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
           withNSObjectArray:(IOSObjectArray *)canvas {
 }
 
-- (void)updateMeasuredDimensionWithInt:(jint)width
-                               withInt:(jint)height {
+- (void)updateMeasuredDimensionWithInt:(int32_t)width
+                               withInt:(int32_t)height {
   [self setMeasuredDimensionWithInt:width withInt:height];
 }
 
@@ -2799,12 +2820,12 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   displayFrame->bottom_ = displayFrame->top_ + [self getHeight];
 }
 
-- (void)offsetTopAndBottomWithInt:(jint)offset {
+- (void)offsetTopAndBottomWithInt:(int32_t)offset {
   [super offsetTopAndBottomWithInt:offset];
   ASViewImpl_nativeMakeFrameWithId_withInt_withInt_withInt_withInt_([this$0_ asNativeWidget], [self getLeft], [self getTop], [self getRight], [self getBottom]);
 }
 
-- (void)offsetLeftAndRightWithInt:(jint)offset {
+- (void)offsetLeftAndRightWithInt:(int32_t)offset {
   [super offsetLeftAndRightWithInt:offset];
   ASViewImpl_nativeMakeFrameWithId_withInt_withInt_withInt_withInt_([this$0_ asNativeWidget], [self getLeft], [self getTop], [self getRight], [self getBottom]);
 }
@@ -2834,7 +2855,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_BoxBackgroundMode)
   [this$0_ setAttributeWithNSString:name withId:value withBoolean:!([value isKindOfClass:[NSString class]])];
 }
 
-- (void)setVisibilityWithInt:(jint)visibility {
+- (void)setVisibilityWithInt:(int32_t)visibility {
   [super setVisibilityWithInt:visibility];
   ASViewImpl_nativeSetVisibilityWithId_withBoolean_([this$0_ asNativeWidget], visibility != ADView_VISIBLE);
 }
@@ -3024,15 +3045,15 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutExt)
 }
 
 - (void)beforeTextChangedWithJavaLangCharSequence:(id<JavaLangCharSequence>)s
-                                          withInt:(jint)start
-                                          withInt:(jint)count
-                                          withInt:(jint)after {
+                                          withInt:(int32_t)start
+                                          withInt:(int32_t)count
+                                          withInt:(int32_t)after {
 }
 
 - (void)onTextChangedWithJavaLangCharSequence:(id<JavaLangCharSequence>)s
-                                      withInt:(jint)start
-                                      withInt:(jint)before
-                                      withInt:(jint)count {
+                                      withInt:(int32_t)start
+                                      withInt:(int32_t)before
+                                      withInt:(int32_t)count {
   if (val$oldTextWatcher_ != nil) {
     [val$oldTextWatcher_ onTextChangedWithJavaLangCharSequence:s withInt:start withInt:before withInt:count];
   }
@@ -3064,7 +3085,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_TextInputLayoutExt)
     { "val$oldTextWatcher_", "LADTextWatcher;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;LADTextWatcher;", "beforeTextChanged", "LJavaLangCharSequence;III", "onTextChanged", "afterTextChanged", "LADEditable;", "LASTextInputLayoutImpl;", "initialized" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_1 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 4, 2, 6, -1, 7, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_1 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 4, 2, 6, -1, 7, -1, -1 };
   return &_ASTextInputLayoutImpl_1;
 }
 
@@ -3110,7 +3131,7 @@ ASTextInputLayoutImpl_1 *create_ASTextInputLayoutImpl_1_initWithASTextInputLayou
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "updateViewsWithJavaLangCharSequence:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_2 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 1, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_2 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 1, 0, -1, 1, -1, -1 };
   return &_ASTextInputLayoutImpl_2;
 }
 
@@ -3155,7 +3176,7 @@ ASTextInputLayoutImpl_2 *create_ASTextInputLayoutImpl_2_initWithASTextInputLayou
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "updateViewsWithJavaLangCharSequence:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_3 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 1, 0, -1, 1, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_3 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 1, 0, -1, 1, -1, -1 };
   return &_ASTextInputLayoutImpl_3;
 }
 
@@ -3182,7 +3203,7 @@ ASTextInputLayoutImpl_3 *create_ASTextInputLayoutImpl_3_initWithASTextInputLayou
 }
 
 - (void)onFocusChangeWithADView:(ADView *)v
-                    withBoolean:(jboolean)hasFocus {
+                    withBoolean:(bool)hasFocus {
   if (hasFocus) {
     [((id<ASIWidget>) nil_chk(this$0_->editText_)) setAttributeWithNSString:@"showDropDown" withId:JavaLangBoolean_valueOfWithBoolean_(true) withBoolean:true];
   }
@@ -3203,7 +3224,7 @@ ASTextInputLayoutImpl_3 *create_ASTextInputLayoutImpl_3_initWithASTextInputLayou
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "onFocusChange", "LADView;Z", "updateViewsWithJavaLangCharSequence:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_4 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 1, 0, -1, 3, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_4 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 1, 0, -1, 3, -1, -1 };
   return &_ASTextInputLayoutImpl_4;
 }
 
@@ -3258,7 +3279,7 @@ ASTextInputLayoutImpl_4 *create_ASTextInputLayoutImpl_4_initWithASTextInputLayou
     { "password_", "Z", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "onClick", "LADView;", "setEndIconModeWithId:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_5 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 2, 0, -1, 3, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_5 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 2, 0, -1, 3, -1, -1 };
   return &_ASTextInputLayoutImpl_5;
 }
 
@@ -3306,7 +3327,7 @@ ASTextInputLayoutImpl_5 *create_ASTextInputLayoutImpl_5_initWithASTextInputLayou
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "onClick", "LADView;", "setEndIconModeWithId:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_6 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 1, 0, -1, 3, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_6 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 1, 0, -1, 3, -1, -1 };
   return &_ASTextInputLayoutImpl_6;
 }
 
@@ -3357,7 +3378,7 @@ ASTextInputLayoutImpl_6 *create_ASTextInputLayoutImpl_6_initWithASTextInputLayou
     { "this$0_", "LASTextInputLayoutImpl;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LASTextInputLayoutImpl;", "onClick", "LADView;", "setEndIconModeWithId:" };
-  static const J2ObjcClassInfo _ASTextInputLayoutImpl_7 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8010, 2, 1, 0, -1, 3, -1, -1 };
+  static const J2ObjcClassInfo _ASTextInputLayoutImpl_7 = { "", "com.ashera.textinputlayout", ptrTable, methods, fields, 7, 0x8000, 2, 1, 0, -1, 3, -1, -1 };
   return &_ASTextInputLayoutImpl_7;
 }
 
@@ -3417,7 +3438,7 @@ ASTextInputLayoutImpl_7 *create_ASTextInputLayoutImpl_7_initWithASTextInputLayou
     if ([((id<ASIWidget>) nil_chk(w_)) getModelUiToPojoEventIds] != nil) {
       ASViewImpl_refreshUiFromModelWithASIWidget_withId_withBoolean_(w_, [((id<ASIWidget>) nil_chk(w_)) getModelUiToPojoEventIds], true);
     }
-    if (strValue_ != nil && ![strValue_ java_isEmpty] && ![((NSString *) nil_chk([((NSString *) nil_chk(strValue_)) java_trim])) java_hasPrefix:@"+"]) {
+    if (strValue_ != nil && ![strValue_ isEmpty] && ![((NSString *) nil_chk([((NSString *) nil_chk(strValue_)) java_trim])) java_hasPrefix:@"+"]) {
       id<ASIActivity> activity = [((id<ASIFragment>) nil_chk([((id<ASIWidget>) nil_chk(w_)) getFragment])) getRootActivity];
       if (activity != nil) {
         [activity sendEventMessageWithJavaUtilMap:obj];
@@ -3523,8 +3544,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_OnClickListener)
   return self;
 }
 
-- (jboolean)onLongClickWithADView:(ADView *)v {
-  jboolean result = true;
+- (bool)onLongClickWithADView:(ADView *)v {
+  bool result = true;
   if (action_ == nil || [action_ isEqual:@"onLongClick"]) {
     [((id<ASIWidget>) nil_chk(w_)) syncModelFromUiToPojoWithNSString:@"onLongClick"];
     id<JavaUtilMap> obj = [self getOnLongClickEventObjWithADView:v];
@@ -3549,7 +3570,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutImpl_OnClickListener)
     if ([((id<ASIWidget>) nil_chk(w_)) getModelUiToPojoEventIds] != nil) {
       ASViewImpl_refreshUiFromModelWithASIWidget_withId_withBoolean_(w_, [((id<ASIWidget>) nil_chk(w_)) getModelUiToPojoEventIds], true);
     }
-    if (strValue_ != nil && ![strValue_ java_isEmpty] && ![((NSString *) nil_chk([((NSString *) nil_chk(strValue_)) java_trim])) java_hasPrefix:@"+"]) {
+    if (strValue_ != nil && ![strValue_ isEmpty] && ![((NSString *) nil_chk([((NSString *) nil_chk(strValue_)) java_trim])) java_hasPrefix:@"+"]) {
       id<ASIActivity> activity = [((id<ASIFragment>) nil_chk([((id<ASIWidget>) nil_chk(w_)) getFragment])) getRootActivity];
       if (activity != nil) {
         [activity sendEventMessageWithJavaUtilMap:obj];

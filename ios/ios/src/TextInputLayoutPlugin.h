@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-ios-widgets\IOSTextInputLayoutPlugin\src\main\java\com\ashera\textinputlayout\TextInputLayoutPlugin.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_TextInputLayoutPlugin")
@@ -39,6 +40,7 @@ FOUNDATION_EXPORT void ASTextInputLayoutPlugin_initPlugin(void);
 J2OBJC_TYPE_LITERAL_HEADER(ASTextInputLayoutPlugin)
 
 @compatibility_alias ComAsheraTextinputlayoutTextInputLayoutPlugin ASTextInputLayoutPlugin;
+
 
 #endif
 

@@ -3,11 +3,22 @@
 //  source: D:\Java\git\core-ios-widgets\IOSTextInputLayoutPlugin\src\main\java\com\ashera\textinputlayout\TextInputLayoutPlugin.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "EditTextImpl.h"
 #include "J2ObjC_source.h"
 #include "TextInputLayoutImpl.h"
 #include "TextInputLayoutPlugin.h"
 #include "WidgetFactory.h"
+
+
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @implementation ASTextInputLayoutPlugin
@@ -59,3 +70,5 @@ void ASTextInputLayoutPlugin_initPlugin() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASTextInputLayoutPlugin)
+
+J2OBJC_NAME_MAPPING(ASTextInputLayoutPlugin, "com.ashera.textinputlayout", "AS")
