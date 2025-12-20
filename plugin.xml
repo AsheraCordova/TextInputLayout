@@ -36,7 +36,7 @@
   </platform>
   <platform name="ios">
     <config-file target="config.xml" parent="/widget">
-      <feature name="com.ashera.textinputlayout.ios">
+      <feature name="CordovaTextInputLayoutPlugin">
         	<param name="ios-package" value="CordovaTextInputLayoutPlugin" />
          	<param name="onload" value="true" />
       </feature>
